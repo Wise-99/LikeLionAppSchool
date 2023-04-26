@@ -1,0 +1,14 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// 형변형 (Type Casting)
+        // 값을 다른 타입으로 변환하는 것을 의미한다.
+		
+		// 정수 값을 4byte 기억장소 int형 변수에 저장한다.
+        // 4 byte 값을 4 byte 기억장소에 저장
+        int a1 = 100;
+        System.out.printf("a1 : %d\n", a1);
+	}
+
+}

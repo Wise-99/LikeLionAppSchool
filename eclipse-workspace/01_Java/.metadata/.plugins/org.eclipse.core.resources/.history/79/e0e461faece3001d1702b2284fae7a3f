@@ -1,0 +1,18 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// 논리형 변수 선언
+		// 변수는 선언과 동시에 기억 장소가 만들어진다.
+		boolean a1;
+		
+		// 변수는 사용하기 전에 값을 저장해야 한다.
+		// = : 대입 연산자. 오른쪽에 있는 값을 왼쪽의 변수에 저장한다.
+		a1 = true;
+		
+		// 변수의 사용
+		// 변수의 이름만 작성해 주면 기억장소의 값을 가져다 사용할 수 있다.
+        System.out.printf("a1 : %s\n", a1);
+	}
+
+}

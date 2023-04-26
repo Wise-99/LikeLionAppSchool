@@ -1,0 +1,16 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// () 안에 내용을 출력하고 한 줄 내려준다.
+		System.out.println("안녕하세요");
+		System.out.println("반갑습니다");
+		
+		//()안에 내용을 출력하고 내림X
+		System.out.print("감사합니다");
+		System.out.print("안녕하세요");
+	}
+
+}
