@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;java01_HelloWorld&apos;" deleteContents="false" description="Delete resource &apos;java01_HelloWorld&apos;" element1="/java01_HelloWorld" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1682396691619"/>&#x0A;<refactoring comment="Delete resource &apos;Java12_StandardInput&apos;" deleteContents="true" description="Delete resource &apos;Java12_StandardInput&apos;" element1="/Java12_StandardInput" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1682493069113"/>
-</session>
