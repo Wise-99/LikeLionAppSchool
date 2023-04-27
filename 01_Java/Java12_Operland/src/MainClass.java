@@ -147,7 +147,60 @@ public class MainClass {
 		System.out.printf("%s || %s : %s\n", i3, i1, i11);
 		System.out.printf("%s || %s : %s\n", i3, i4, i12);
 		
-		
+		// 3항 연산자
+        // 주어진 비교 연산의 결과가 true 면 값1이 연산의 결과가 되고
+        // false면 값2가 연산의 결과가 된다.
+        // 비교연산식 ? 값1 : 값2
+        int j1 = 100;
+
+        boolean j2 = j1 < 200 ? true : false;
+        boolean j3 = j1 > 200 ? true : false;
+
+        System.out.printf("j2 : %s\n", j2);
+        System.out.printf("j3 : %s\n", j3);
+        
+        // 대입 연산자
+        // 우측의 값을 좌측의 변수에 저장한다.
+        int k1 = 100;
+        System.out.printf("k1 : %d\n", k1);
+        
+        // 다른 연산자와 같이 사용하는 대입연산자
+        int k2 = 100;
+        int k3 = 100;
+        
+        k2 = k2 + 10;
+        k3 += 10;
+
+        System.out.printf("k2 : %d\n", k2);
+        System.out.printf("k3 : %d\n", k3);
+        
+        k2 = k2 - 10;
+        k3 -= 10;
+
+        System.out.printf("k2 : %d\n", k2);
+        System.out.printf("k3 : %d\n", k3);
+        
+        // 증감연산자
+        int l1 = 100;
+        int l2 = 100;
+
+        ++l1;
+        l2++;
+
+        System.out.printf("l1 : %d\n", l1);
+        System.out.printf("l2 : %d\n", l2);
+        
+        --l1;
+        l2--;
+
+        System.out.printf("l1 : %d\n", l1);
+        System.out.printf("l2 : %d\n", l2);
+        
+        int l3 = ++l1;
+        int l4 = l2++;
+
+        System.out.printf("l1 : %d, l3 : %d\n", l1, l3);
+        System.out.printf("l2 : %d, l4 : %d\n", l2, l4);
 	}
 
 }
