@@ -50,7 +50,7 @@ public class Ex3 {
 			for(int j = 0; j<=10; j++) {				//j(y의 숫자) 0~10까지 반복
 				
 				if((i*2) + (j*4) == 10) {				// 방정식에 대입했을 때 10이라면 프린트
-					System.out.print("(" + i + ", " + j + ") ");
+					System.out.print("(x : " + i + ", y : " + j + ") ");
 				}
 			}
 		}
