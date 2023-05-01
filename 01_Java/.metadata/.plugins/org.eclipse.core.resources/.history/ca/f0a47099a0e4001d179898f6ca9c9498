@@ -1,0 +1,17 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// if 문
+		// 주어진 수식의 결과가 true인 경우 관리하는 코드가 수행되고
+		// 그렇지 않은 경우에는 수행되지 않는다.
+		int a1 = 10;
+		if(a1 > 5)
+			System.out.println("a1은 5보다 큽니다");
+		if(a1 < 5)
+			System.out.println("a1은 5보다 작습니다");
+		
+		
+	}
+
+}

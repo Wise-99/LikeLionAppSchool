@@ -1,0 +1,13 @@
+
+public class Ex1 {
+
+	public static void main(String[] args) {
+		// 문제1)
+		// "안녕하세요"를 5번 출력한다.
+		for(int i = 0; i < 5; i++) {
+			System.out.println("안녕하세요");
+		}
+
+	}
+
+}

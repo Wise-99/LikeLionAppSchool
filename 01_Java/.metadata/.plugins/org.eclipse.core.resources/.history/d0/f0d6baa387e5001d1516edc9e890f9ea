@@ -1,0 +1,37 @@
+
+public class MainClass {
+	public static void main(String[] args) {
+		// 객체 생성
+		TestClass1 t1 = new TestClass1();
+
+		// 메서드를 호출한다.
+		t1.testMethod1();
+		t1.testMethod2();
+		
+		TestClass2 t2 = new TestClass2();
+		t2.testMethod3();
+		t2.testMethod4();
+	}
+}
+
+class TestClass1 {
+	// 메서드
+	public void testMethod1() {
+		System.out.println("TestClass1의 testMethod1 입니다.");
+	}
+
+	public void testMethod2() {
+		System.out.println("TestClass1의 testMethod2 입니다.");
+	}
+}
+
+class TestClass2 {
+	// 메서드
+	public void testMethod3() {
+		System.out.println("TestClass2의 testMethod3 입니다.");
+	}
+
+	public void testMethod4() {
+		System.out.println("TestClass2의 testMethod4 입니다.");
+	}
+}

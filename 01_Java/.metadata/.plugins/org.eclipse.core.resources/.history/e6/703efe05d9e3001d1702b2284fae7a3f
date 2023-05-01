@@ -1,0 +1,19 @@
+
+public class MainClass {
+	public static void main(String[] args) {
+		// printf : 출력 형식을 설정하여 출력해준다.
+		// %d : 정수, %f : 실수, %s : 문자열, %c : 문자
+        System.out.printf("정수 : %d, 실수 : %f, 문자열 : %s, 문자 : %c\n", 100, 11.11, "안녕하세요", 'a');
+        
+        // 정수를 출력할 때 %f나 %s를 사용하는 경우
+        System.out.printf("%f, %s\n", 100, 100);
+        
+        // 정수를 출력할 때 %f를 사용하는 경우
+        // %f에 설정되는 값이 실수가 아니므로 오류가 발생한다.
+        // System.out.printf("%f\n", 100);
+        
+        // 실수를 출력할 때 %d를 사용하는 경우
+        // %d에 설정되는 값이 실수가 아니므로 오류가 발생한다.
+        // System.out.printf("%d\n", 11.11);
+	}
+}

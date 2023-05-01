@@ -1,0 +1,55 @@
+
+public class Ex3 {
+
+	public static void main(String[] args) {
+		//제출 과제()
+		// 문제1)
+        // 1 + (1 + 2) + (1 + 2 + 3) + (1 + 2 + 3 + 4)
+        // + (1 + 2 + 3 + 4 + 5) + ... + (1 + 2 + ... + 9 + 10)
+        // 의 총 합을 출력하세요.
+		int total1 = 0;
+		for(int i=1; i<=10; i++) {
+			int sum = 0;
+			for(int j=1; j<=i; j++) {
+				sum += j;
+			}
+			total1 += sum;
+		}
+		System.out.println("1번 답 : " + total1);
+
+        // 문제2)
+        // 1 + (-2) + 3 + (-4) + 5 + (-6) + 7 + (-8) + ...
+        // 이런식으로 더했을 때 몇 까지 더해야지 총 합이 100 이상이 되는지 구하세요.
+		int num = 0;
+		int total2 = 0;
+		
+		while(total2 < 100) {
+			num++;
+			
+			if(num % 2 == 0) {
+				num *= -1;
+				total2 += num;
+			} else {
+				total2 += num;
+			}
+			
+		}
+		System.out.println("2번 답 : "+ num);
+
+        // 문제3)
+        // 방정식 2x + 4y = 10 에서 가능한 모든 x, y 의 조합을 출력하세요
+        // 단, x는 0 ~ 10, y는 0 ~ 10 까지 이다.
+		int count = 0;
+		for(int i = 0; i<=10; i++) {
+			for(int j = 0; j<=10; j++) {
+				if((i*2) + (j*4) == 10) {
+					count++;
+				}
+			}
+		}
+		System.out.println("3번 답 : " + count);
+		
+
+	}
+
+}

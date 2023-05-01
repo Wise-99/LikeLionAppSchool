@@ -1,0 +1,9 @@
+package com.test.problem;
+
+public class MainClass {
+	
+	static void main(Stirng[] args) {
+	
+		
+	}
+}

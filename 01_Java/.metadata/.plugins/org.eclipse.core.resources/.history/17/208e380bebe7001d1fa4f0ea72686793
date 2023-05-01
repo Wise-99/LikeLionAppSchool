@@ -1,0 +1,43 @@
+package com.test.main;
+
+public class MainClass {
+	public static void main(String[] args) {
+		// Overloading(오버로딩)
+		// 메서드나 생성자를 작성할 때 매개변수의 형태를 다르게 하여
+		// 같은 이름으로 여러 개를 만들 수 있도록 제공되는 개념
+		
+		TestClass1 t1 = new TestClass1();
+		TestClass1 t2 = new TestClass1(1);
+		TestClass1 t3 = new TestClass1(1, 2);
+		
+		t1.printMember();
+		t2.printMember();
+		t3.printMember();
+	}
+}
+
+class TestClass1 {
+	int memberA;
+	int memberB;
+	
+	// 생성자 Overloading
+	public TestClass1() {
+		this.memberA = 100;
+		this.memberB = 200;
+	}
+	
+	public TestClass1(int memberA) {
+		this.memberA = memberA;
+		this.memberB = 200;
+	}
+	
+	public TestClass1(int memberA, int memberB) {
+		this.memberA = memberA;
+		this.memberB = memberB;
+	}
+	
+	public void printMember() {
+		System.out.printf("memberA : %d\n", memberA);
+        System.out.printf("memberB : %d\n", memberB);
+	}
+}

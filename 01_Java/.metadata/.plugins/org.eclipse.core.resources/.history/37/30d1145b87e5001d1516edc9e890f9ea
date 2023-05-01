@@ -1,0 +1,22 @@
+
+public class MainClass {
+	public static void main(String[] args) {
+		// 객체 생성
+		TestClass1 t1 = new TestClass1();
+		
+		// 메서드를 호출한다.
+		t1.testMethod1();
+		t1.testMethod2();
+	}
+}
+
+class TestClass1 {
+	// 메서드
+	public void testMethod1() {
+		System.out.println("TestClass1의 testMethod1 입니다.");
+	}
+	
+	public void testMethod2() {
+		System.out.println("TestClass1의 testMethod2 입니다.");
+	}
+}

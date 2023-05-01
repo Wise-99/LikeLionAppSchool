@@ -1,0 +1,26 @@
+package com.test.main;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// 정수형 기억장소 10개를 관리하는 배열
+		int[] array1 = new int[10];
+		
+		//값을 담는다.
+		array1[0] = 100;
+		array1[1] = 200;
+		array1[2] = 300;
+		
+		// 사용한다.
+		System.out.printf("array1[0] : %d\n", array1[0]);
+		System.out.printf("array1[1] : %d\n", array1[1]);
+		System.out.printf("array1[2] : %d\n", array1[2]);
+		
+		// 배열 생성시 관리할 값을 넣어준다.
+		int[] array2 = {1, 2, 3};
+		System.out.printf("array2[0] : %d\n", array2[0]);
+		System.out.printf("array2[1] : %d\n", array2[1]);
+		System.out.printf("array2[2] : %d\n", array2[2]);
+	}
+
+}

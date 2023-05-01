@@ -1,0 +1,19 @@
+// 하나의 Java파일에 클래스를 여러개 만드는 것과
+//각자 Java파일로 클래스를 만드는 것이 모두 동일하게
+// 서로 다른 클래스 파일로 만들어진다.
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		TestClass1 t1 = new TestClass1();
+		System.out.printf("t1 : %s\n", t1);
+		
+		TestClass2 t2 = new TestClass2();
+		System.out.printf("t2 : %s\n", t2);
+	}
+
+}
+
+class TestClass2 {
+	
+}

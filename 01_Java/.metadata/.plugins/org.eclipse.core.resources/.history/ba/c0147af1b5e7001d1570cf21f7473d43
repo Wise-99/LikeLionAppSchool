@@ -1,0 +1,9 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		TestClass1 t1 = new TestClass1();
+		System.out.printf("t1 : %s\n", t1);
+	}
+
+}

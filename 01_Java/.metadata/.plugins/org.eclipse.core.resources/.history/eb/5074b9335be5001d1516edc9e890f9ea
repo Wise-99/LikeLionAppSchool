@@ -1,0 +1,10 @@
+
+public class Ex6 {
+
+	public static void main(String[] args) {
+		// 사용자에게 숫자를 입력 받아 2에서 부터 그 숫자까지의 범위 안에서
+        // 소수(1과 자기 자신으로만 나눠지는 수)를 모두 출력한다.
+
+	}
+
+}

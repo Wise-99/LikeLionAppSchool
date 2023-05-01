@@ -1,0 +1,16 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		TestClass1 t1 = new TestClass1();
+		System.out.printf("t1 : %s\n", t1);
+		
+		TestClass2 t2 = new TestClass2();
+		System.out.printf("t2 : %s\n", t2);
+	}
+
+}
+
+class TestClass2 {
+	
+}

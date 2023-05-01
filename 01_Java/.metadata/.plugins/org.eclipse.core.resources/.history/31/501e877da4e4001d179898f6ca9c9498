@@ -1,0 +1,70 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// if 문
+		// 주어진 수식의 결과가 true인 경우 관리하는 코드가 수행되고
+		// 그렇지 않은 경우에는 수행되지 않는다.
+
+		int a1 = 10;
+		if (a1 > 5)
+			System.out.println("a1은 5보다 큽니다");
+		if (a1 < 5)
+			System.out.println("a1은 5보다 작습니다");
+
+		// 관리하는 코드가 한 줄 이상이면 괄호로 묶어 줘야 한다.
+		if (a1 != 10) {
+			System.out.println("a1은 10이 아닙니다");
+			System.out.println("이 부분이 수행 될까요???");
+		}
+
+		// 조건에 만족하는 부분이 없을 경우 수행할 코드가 있다면
+		// else를 사용한다.
+		if (a1 == 10) {
+			System.out.println("a1은 10입니다");
+		} else {
+			System.out.println("a1은 10이 아닙니다");
+		}
+
+		if (a1 > 10) {
+			System.out.println("a1은 10보다 큽니다");
+		} else {
+			System.out.println("a1은 10보다 크지 않습니다");
+		}
+
+		// 조건이 다양하게 있을 경우 else if로 추가 조건들을 설정해준다.
+		if (a1 == 0) {
+			System.out.println("a1은 0 입니다");
+		} else if (a1 == 5) {
+			System.out.println("a1은 5 입니다");
+		} else if (a1 == 10) {
+			System.out.println("a1은 10입니다");
+		} else if (a1 == 20) {
+			System.out.println("a1은 20입니다");
+		} else {
+			System.out.println("a1은 0, 5, 10, 20이 아닙니다");
+		}
+
+		System.out.println("----------------------------------");
+
+		int a2 = 10;
+
+		switch (a2) {
+		case 1:
+			System.out.println("a2는 1입니다");
+			break;
+		case 5:
+			System.out.println("a2는 5입니다");
+			break;
+		case 10:
+			System.out.println("a2는 10입니다");
+			break;
+		case 20:
+			System.out.println("a2는 20입니다");
+			break;
+		default:
+			System.out.println("a2는 1, 5, 10, 20이 아닙니다");
+		}
+	}
+
+}
