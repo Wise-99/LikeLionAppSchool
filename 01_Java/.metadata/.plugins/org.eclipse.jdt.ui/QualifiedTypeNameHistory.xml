@@ -3,4 +3,12 @@
     <fullyQualifiedTypeName name="com.test.pkg3.TestClass10"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.test.zoo.Animal"/>
+    <fullyQualifiedTypeName name="com.test.zoo.ZooClass"/>
+    <fullyQualifiedTypeName name="com.test.main.OuterClass2.InnerClass2"/>
+    <fullyQualifiedTypeName name="com.test.main.SUVClass"/>
+    <fullyQualifiedTypeName name="com.test.main.TestInterface2"/>
+    <fullyQualifiedTypeName name="com.test.main.TestClass1"/>
+    <fullyQualifiedTypeName name="com.test.main.TestClass500"/>
 </qualifiedTypeNameHistroy>
