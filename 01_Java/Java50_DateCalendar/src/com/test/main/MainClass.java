@@ -54,6 +54,7 @@ public class MainClass {
         c2.set(Calendar.DAY_OF_MONTH, 31);
         c2.set(Calendar.HOUR_OF_DAY, 17);
         c2.set(Calendar.MINUTE, 37);
+        c2.set(Calendar.SECOND, 23);
         c2.set(Calendar.MILLISECOND, 800);
         
         

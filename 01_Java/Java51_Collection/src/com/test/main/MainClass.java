@@ -2,6 +2,9 @@ package com.test.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class MainClass {
 
@@ -94,6 +97,36 @@ public class MainClass {
         // 모두 제거
         map1.clear();
         System.out.println(map1);
+        
+        System.out.println("----------------------------");
+        
+        Set<String> set = new HashSet<String>();
+        
+        set.add("문자열1");
+        set.add("문자열2");
+        set.add("문자열3");
+        set.add("문자열3");
+        
+        System.out.println(set.size()); // 3
+        System.out.println(set); // [문자열3, 문자열2, 문자열1]
+        
+        Iterator iter = set.iterator();	// Iterator 사용
+        while(iter.hasNext()) {//값이 있으면 true 없으면 false
+            System.out.print(iter.next() + " "); // 문자열3 문자열2 문자열1 
+        }
+        System.out.println();
+        System.out.println(set.toString()); // [문자열3, 문자열2, 문자열1]
+        
+        System.out.println(set.contains("문자열1")); // true
+        System.out.println(set.contains("문자열4")); // false
+        
+        set.remove("문자열1");
+        System.out.println(set.toString());
+        
+        set.clear();
+        System.out.println(set.toString()); // []
+        
+        System.out.println(set.isEmpty()); // true
 	}
 
 }
