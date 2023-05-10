@@ -1,145 +1,114 @@
 package com.test.main;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// 2조 김민우 김예린 정주성 한상완
+
 public class MainClass {
 
-	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
-
-		// 2팀
-		// 정주성, 김민우, 김예린, 한상완
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
 		
-		int menuType = 0; // 메뉴 번호를 저장할 변수
-
-		Scanner scan = new Scanner(System.in); // 스캐너
-		Student stu = new Student(); // 빈 객체 생성
-
+		ArrayList<Student> studentList = new ArrayList<>();
+		School school = new School();
+		int menu = 0;
+		
 		do {
-			System.out.println("----- menu -----");
-			System.out.println("1. 학생정보 입력");
-			System.out.println("2. 학생정보 검색");
-			System.out.println("3. 과목별 총점 출력");
-			System.out.println("4. 과목별 평균 출력");
-			System.out.println("5. 종료");
-
-			// 메뉴 종류를 입력받는다.
-			menuType = scan.nextInt();
-
-			// 5가 아닐 때만 동작
-			if (menuType != 5) {
+			// 메뉴 번호 입력 받기
+			menu = school.saveMenu(scan);
+			
+			switch (menu) {
+			case 1:
+				// 학생정보 입력 후 Student객체 반환
+				Student student = school.InfoSaveInSchool(scan);
 				
-				switch (menuType) {
-				case 1:	
-					Student s = stu.studentScan(scan); // 1번 화면 출력 및 객체 생성 후 리턴
-					
-					saveObject(s); // 객체와 객체의 갯수 리턴
-					
-					break;
-					
-				case 2:
-					System.out.print("검색할 학생 이름 입력 : ");
-					String sName = scan.next();
-					
-					if(sName.equals("모두")) {
-						stu.allSutudentInfo(loadObject());
-					} else {
-						stu.studentSearch(loadObject(), sName);
-					}
-					break;
-					
-				case 3:
-					stu.printTotal(loadObject());
-					break;
-					
-				case 4:
-					stu.printAvg(loadObject());
-					break;
-				}
+				studentList.add(student); // 리스트에 추가
+				saveInfo(studentList); 	// 리스트를 파일에 저장
+				break;
+			case 2:// 학생정보 검색
+				school.StudentSearch(scan, loadInfo());
+				break;
+			case 3:// 과목별 총점 출력
+				school.printTotal(loadInfo());
+				break;
+			case 4:// 과목별 평균 출력
+				school.printAvg(loadInfo());
+				break;
+			case 5:// 종료
+				break;
+				
+			default :
+				System.out.println("1~5까지만 입력 가능합니다. 다시 입력해주세요.");
+				
 			}
-
-		} while (menuType != 5);
-
+			System.out.println();
+			
+		} while (menu != 5);
+		
+		scan.close();
 	}
 
-	// 파일에 객체 저장하기
-	public static void saveObject(Student s) throws FileNotFoundException, ClassNotFoundException {
-		
-		// 이전에 저장되어있는 객체들을 저장한다.
-		ArrayList<Student> stuList = loadObject();
-
+	// 파일에 학생 정보 저장
+	public static void saveInfo(ArrayList<Student> studentList) {
 		try {
-
 			// 기본 스트림
-			FileOutputStream fos = new FileOutputStream("Student.dat");
-
+			FileOutputStream fos = new FileOutputStream("student.dat");
 			// 객체 출력 스트림
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
 			// 객체를 쓴다.
-			oos.writeObject(s);
-			for(Student stu : stuList) {
-				oos.writeObject(stu);
-			}
+			oos.writeObject(studentList);
 
 			oos.flush();
 			oos.close();
 			fos.close();
-
-			System.out.println("--- 학생 정보 입력 완료 ---");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// 파일에 저장되어있는 객체 불러오기
-	public static ArrayList<Student> loadObject() throws FileNotFoundException, ClassNotFoundException {
-		// 객체를 복원할 리스트
-		ArrayList<Student> stuList = new ArrayList<Student>();
+	// 파일에 있는 학생 정보 불러오기
+	public static ArrayList<Student> loadInfo() {
+		
+		// 객체를 복원하기 위한 리스트
+		ArrayList<Student> list = null;
 
 		try {
 			// 기본 스트림 생성
-			FileInputStream fis = new FileInputStream("Student.dat");
-
+			FileInputStream fis = new FileInputStream("student.dat");
 			// 객체 읽기 스트림
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			Student stu = null;
-			while ((stu = (Student) ois.readObject()) != null) {
-				stuList.add(stu);
-
-			}
+			// 객체를 복원한다.
+			list = (ArrayList<Student>) ois.readObject();
 
 			ois.close();
 			fis.close();
-			
-			throw new FileNotFoundException("빈 파일");
-			
-		} catch (EOFException e) {
-            // 더 이상 읽을 객체가 없을 때 예외 처리
 
-            
-        } catch (IOException e) {
-            
-        }
-		
-		return stuList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
-
-	
 }
 
+// 학생 클래스
+// 학생의 정보는 이름, 학년, 국어, 영어, 수학 으로 구성됩니다.
 class Student implements Serializable {
 
-	String name; 	// 이름
-	int grade; 		// 학년
-	int korean; 	// 국어
-	int english; 	// 영어
-	int math; 		// 수학
+	String name;
+	int grade;
+	int korean;
+	int english;
+	int math;
 
-	// 생성자
 	public Student(String name, int grade, int korean, int english, int math) {
 		this.name = name;
 		this.grade = grade;
@@ -148,94 +117,107 @@ class Student implements Serializable {
 		this.math = math;
 	}
 
-	// 빈 생성자
-	public Student() {
-		
+	// 학생 정보 출력 메서드
+	public void printInfo() {
+		System.out.printf("이름: %s\n", name);
+		System.out.printf("학년: %d\n", grade);
+		System.out.printf("국어: %d\n", korean);
+		System.out.printf("영어: %d\n", english);
+		System.out.printf("수학: %d\n", math);
 	}
+}
 
-	public Student studentScan(Scanner scan) {
-
-		System.out.println("----- 학생 정보입력 -----");
-		System.out.print("이름 : ");
+class School {
+	public School() {}
+	
+	// 메뉴 번호 입력 메서드
+	public int saveMenu(Scanner scan) {
+		System.out.printf("학생 정보 관리 프로그램 \n\n");
+		System.out.printf("1. 학생정보 입력\n" + "2. 학생정보 검색\n" + "3. 과목별 총점 출력\n" + "4. 과목별 평균 출력\n" + "5. 종료\n");
+		System.out.printf("번호 입력 : ");
+		int menu = scan.nextInt();
+		System.out.println("----------------------------------");
+		
+		return menu;
+	}
+	
+	// 학생 정보 입력하여 Student객체로 반환하는 메서드
+	public Student InfoSaveInSchool(Scanner scan) {
+		System.out.print("이름을 입력해주세요: ");
 		String name = scan.next();
-
-		System.out.print("학년 : ");
+		System.out.print("학년을 입력해주세요: ");
 		int grade = scan.nextInt();
-
-		System.out.print("국어 : ");
+		System.out.print("국어 점수를 입력해주세요: ");
 		int korean = scan.nextInt();
-
-		System.out.print("영어 : ");
+		System.out.print("영어 점수를 입력해주세요: ");
 		int english = scan.nextInt();
-
-		System.out.print("수학 : ");
+		System.out.print("수학 점수를 입력해주세요: ");
 		int math = scan.nextInt();
 		
-		Student s = new Student(name, grade, korean, english, math);
+		Student student = new Student(name, grade, korean, english, math);
 		
-		return s;
-
-	}
-	// 모든 학생의 정보를 출력하는 메서드
-	public void allSutudentInfo(ArrayList<Student> stulist) {
-		for (Student stu : stulist) {
-			System.out.println("이름 : " + stu.name);
-			System.out.println("학년 : " + stu.grade);
-			System.out.println("국어 점수 : " + stu.korean);
-			System.out.println("영어 점수 : " + stu.english);
-			System.out.println("수학 점수 : " + stu.math);
-		}
+		return student;
 	}
 	
-	
-	// 학생 정보를 출력하는 메서드
-	public void studentSearch(ArrayList<Student> stulist, String name) {
-		for (Student stu : stulist) {
-
-			if (name.equals(stu.name)) {
-				System.out.println("이름 : " + stu.name);
-				System.out.println("학년 : " + stu.grade);
-				System.out.println("국어 점수 : " + stu.korean);
-				System.out.println("영어 점수 : " + stu.english);
-				System.out.println("수학 점수 : " + stu.math);
+	public void StudentSearch(Scanner scan, ArrayList<Student> list) {
+		System.out.print("학생의 이름을 입력해주세요 : ");
+		String name = scan.next();
+		
+		if (name.equals("모두")) {
+			for (Student student : list)
+				student.printInfo();
+		} else {
+			for (Student student : list) {
+				if (student.name.equals(name)) {
+					student.printInfo();
+				}
 			}
 		}
+		System.out.println("----------------------------------");
+	}
+	
+	// 과목별 총점 출력 메서드
+	public void printTotal(ArrayList<Student> list) {
+		int korsum = 0;
+		int engsum = 0;
+		int mathsum = 0;
+		try {
+
+			for (Student student : list) {
+				korsum += student.korean;
+				engsum += student.english;
+				mathsum += student.math;
+			}
+			
+			System.out.printf("국어 총점 : %d\n", korsum);
+			System.out.printf("영어 총점 : %d\n", engsum);
+			System.out.printf("수학 총점 : %d\n", mathsum);
+			System.out.println("----------------------------------");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	// 과목별 총점을 구하는 메서드
-	public void printTotal(ArrayList<Student> stuList) {
-		int koTotal = 0;
-		int engTotal = 0;
-		int mathTotal = 0;
-		
-		for(Student s : stuList) {
-			koTotal += s.korean;
-			engTotal += s.english;
-			mathTotal += s.math;
+	// 과목별 평균 출력 메서드
+	public void printAvg(ArrayList<Student> list) {
+		int korsum = 0;
+		int engsum = 0;
+		int mathsum = 0;
+		try {
+
+			for (Student student : list) {
+				korsum += student.korean;
+				engsum += student.english;
+				mathsum += student.math;
+			}
+			System.out.printf("국어 평균 : %d\n", korsum / list.size());
+			System.out.printf("영어 평균 : %d\n", engsum / list.size());
+			System.out.printf("수학 평균 : %d\n", mathsum / list.size());
+			System.out.println("----------------------------------");			
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		System.out.println("국어 총점 : " + koTotal);
-		System.out.println("영어 총점 : " + engTotal);
-		System.out.println("수학 총점 : " + mathTotal);
-		
-	}
-	// 과목별 평균을 구하는 메서드
-	public void printAvg(ArrayList<Student> stuList) {
-		int koAvg = 0;
-		int engAvg = 0;
-		int mathAvg = 0;
-		int len = stuList.size();
-		
-		for(Student s : stuList) {
-			koAvg += s.korean;
-			engAvg += s.english;
-			mathAvg += s.math;
-		}
-		
-		System.out.println("국어 평균 : " + koAvg/len);
-		System.out.println("영어 평균 : " + engAvg/len);
-		System.out.println("수학 평균 : " + mathAvg/len);
-		
-		
 	}
 }
