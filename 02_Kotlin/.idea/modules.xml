@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/02_Kotlin.iml" filepath="$PROJECT_DIR$/.idea/02_Kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarFactory/CarFactory.iml" filepath="$PROJECT_DIR$/CarFactory/CarFactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin08_LoopEx/Kotlin08_LoopEx.iml" filepath="$PROJECT_DIR$/Kotlin08_LoopEx/Kotlin08_LoopEx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin11_OOPEx2/Kotlin11_OOPEx2.iml" filepath="$PROJECT_DIR$/Kotlin11_OOPEx2/Kotlin11_OOPEx2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin12_OOPEx3/Kotlin12_OOPEx3.iml" filepath="$PROJECT_DIR$/Kotlin12_OOPEx3/Kotlin12_OOPEx3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin13_OOPEx4/Kotlin13_OOPEx4.iml" filepath="$PROJECT_DIR$/Kotlin13_OOPEx4/Kotlin13_OOPEx4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin_Toy/Kotlin_Toy.iml" filepath="$PROJECT_DIR$/Kotlin_Toy/Kotlin_Toy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin_machine/Kotlin_machine.iml" filepath="$PROJECT_DIR$/Kotlin_machine/Kotlin_machine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlin15_InheritEX1/kotlin15_InheritEX1.iml" filepath="$PROJECT_DIR$/kotlin15_InheritEX1/kotlin15_InheritEX1.iml" />
+    </modules>
+  </component>
+</project>
