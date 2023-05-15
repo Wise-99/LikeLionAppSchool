@@ -1,4 +1,4 @@
-package con.test.pkg1
+package com.test.pkg1
 
 private class PrivateClass3
 public class PublicClass3

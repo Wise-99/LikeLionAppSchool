@@ -1,8 +1,8 @@
+import com.test.pkg1.InternalClass3
+import com.test.pkg1.PublicClass3
+import com.test.pkg1.SuperClass2
 import com.test.pkg2.PublicClass4
 import com.test.pkg2.SuperClass3
-import con.test.pkg1.InternalClass3
-import con.test.pkg1.PublicClass3
-import con.test.pkg1.SuperClass2
 
 // class
 // private : 파일이 같을 경우에만 사용이 가능하다.
@@ -18,7 +18,7 @@ import con.test.pkg1.SuperClass2
 // 생략시 public으로 설정되고 internal은 같은 모듈이라면 public과 동일하다.
 
 fun main() {
-    // 같은 파일에 있는 클래스들은 아무 제약 없이 사용이 가능하다.
+    // 같은 파일에 있는 클래스 들은 아무 제약없이 사용이 가능하다.
     val a1 = PrivateClass1()
     val a2 = PublicClass1()
     val a3 = InternalClass1()
@@ -26,11 +26,11 @@ fun main() {
     println("a2 : $a2")
     println("a3 : $a3")
 
-    // val b1 = PrivateClass2()
     // 같은 패키지 다른 파일
     // private 클래스 사용 불가
+    // val b1 = PrivateClass2()
     val b2 = PublicClass2()
-    val b3 = InternalClass2()
+    val b3 = InterClass2()
 
     println("b2 : $b2")
     println("b3 : $b3")
@@ -48,7 +48,7 @@ fun main() {
     // val d1 = PrivateClass4()
     val d2 = PublicClass4()
     // val d3 = InternalClass4()
-    println("d2 : $d2")
+    print("d2 : $d2")
 
     // 같은 모듈, 같은 패키지, 같은 파일, 객체를 생성하여 사용하는 경우
     // private, protected 요소 사용 불가
@@ -58,11 +58,12 @@ fun main() {
     // println(super1.a3)
     println(super1.a4)
 
-    // 같은 모듈 다른 패키지, 객체를 생성하여 사용하는 경ㅔ갸ㅜ시ㅜ
+    // 같은 모듈, 다른 패키지, 객체를 생성하여 사용하는 경우
+    // private, protected 접근 불가
     val super2 = SuperClass2()
-    //println(super2.b1)
+    // println(super2.b1)
     println(super2.b2)
-    //println(super2.b3)
+    // println(super2.b3)
     println(super2.b4)
 
     // 다른 모듈, 객체를 생성하는 경우
@@ -73,7 +74,6 @@ fun main() {
     println(super3.c3)
     println(super3.c4)
 }
-
 // 같은 파일에 있는 클래스
 private class PrivateClass1
 public class PublicClass1
@@ -81,18 +81,20 @@ public class PublicClass1
 // protected class ProtectedClass1
 internal class InternalClass1
 
-
 open class SuperClass1{
-    // kotlin에서는 자바로 변경될 때 모든 멤버 변수가 private 변수이다.
-    // kotlin에서 접근제한자를 설정하면 자바로 변환될 때 setter/getter 생성에 대한 설정이 된다.
+    // kotlin에서는 자바로 변경될 때 모든 맴버 변수가 전부다 private 변수이다
+    // kotlin 에서 접근 제한자를 설정하면 Java로 변환될 때 setter/getter 생성에 대한
+    // 설정이 된다.
     private var a1 = 100
     public var a2 = 200
     protected var a3 = 300
     internal var a4 = 400
 }
 
-// 같은 모듈, 같은 패키지, 같은 파일, 상속하는 경우
+// 같은 모듈, 같은 패키지, 같은 파일, 상속 하는 경우
+// private 요소 접근 불가
 class SubClass1 : SuperClass1(){
+
     fun subMethod1(){
         // print(a1)
         print(a2)
@@ -102,7 +104,7 @@ class SubClass1 : SuperClass1(){
 }
 
 // 같은 모듈, 다른 패키지, 상속하는 경우
-/// private 요소 사용 불가
+// private 요소 사용 불가
 class SubClass2 : SuperClass2(){
 
     fun subMethod2(){
@@ -112,7 +114,6 @@ class SubClass2 : SuperClass2(){
         print(b4)
     }
 }
-
 // 다른 모듈
 // private, internal 요소 사용 불가
 class SubClass3 : SuperClass3(){
