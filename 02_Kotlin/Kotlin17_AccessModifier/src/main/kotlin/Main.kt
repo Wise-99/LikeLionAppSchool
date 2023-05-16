@@ -30,7 +30,7 @@ fun main() {
     // private 클래스 사용 불가
     // val b1 = PrivateClass2()
     val b2 = PublicClass2()
-    val b3 = InterClass2()
+    val b3 = InternalClass2()
 
     println("b2 : $b2")
     println("b3 : $b3")
