@@ -18,8 +18,11 @@ fun main() {
     val s4 = Number2.TwoClass(400)
 
     checkNumber2(s1)
+    println()
     checkNumber2(s2)
+    println()
     checkNumber2(s3)
+    println()
     checkNumber2(s4)
 }
 
