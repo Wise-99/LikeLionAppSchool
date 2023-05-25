@@ -14,7 +14,6 @@ fun main() {
     var obj1 = TestClass1()
     var obj2 = TestClass1()
     obj1.number1 = 100
-    obj1.number1 = 100
     obj2.number1 = 200
 
     val r3 = obj1 add4 obj2

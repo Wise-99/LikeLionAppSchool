@@ -7,8 +7,16 @@
       <change beforePath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index" beforeDir="false" afterPath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../01_Java/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kotlin33_NullCasting/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Kotlin33_NullCasting/src/main/kotlin/main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kotlin35_SealedClass/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Kotlin35_SealedClass/src/main/kotlin/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/Kotlin42_ExtentionFunction.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin42_ExtentionFunction/src/main/kotlin/main.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +31,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/gim-yelin/eclipse-workspace/02_Kotlin"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gim-yelin/eclipse-workspace/02_Kotlin&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
