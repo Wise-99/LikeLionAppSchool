@@ -7,11 +7,11 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.test.android14_ex03.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding: ActivityMainBinding
+    val studentList = mutableListOf<StudentInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,94 +19,94 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        val studentList = ArrayList<Student>()
+        activityMainBinding.run{
+            // 첫 번째 EditText에 포커스를 준다.
+            editTextName.requestFocus()
 
-        activityMainBinding.run {
-
-            // 키보드 올라오게 설정
             thread {
-                SystemClock.sleep(500);
+                SystemClock.sleep(500)
                 val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(currentFocus, 0)
             }
 
-            editTextName.run {
-                requestFocus()
+            // 수학점수
+            editTextMath.run{
+                setOnEditorActionListener { v, actionId, event ->
+                    // 사용자가 입력한 내용을 모두 가져온다.
+                    val name = editTextName.text.toString()
+                    val age = editTextAge.text.toString().toInt()
+                    val korean = editTextKorean.text.toString().toInt()
+                    val english = editTextEnglish.text.toString().toInt()
+                    val math = text.toString().toInt()
 
-                setOnEditorActionListener { textView, i, keyEvent ->
-                    false
+//                    Log.d("studentInfo", name)
+//                    Log.d("studentInfo", age.toString())
+//                    Log.d("studentInfo", korean.toString())
+//                    Log.d("studentInfo", english.toString())
+//                    Log.d("studentInfo", math.toString())
+
+                    // 입력한 학생 정보를 담아준다.
+                    val studentInfo = StudentInfo(name, age, korean, english, math)
+                    studentList.add(studentInfo)
+
+                    // 텍스트 뷰에 학생 수를 출력해준다.
+                    textViewStudentCount.text = "현재 학생 수 : ${studentList.size}"
+
+                    // EditText들을 비워준다.
+                    editTextName.setText("")
+                    editTextAge.setText("")
+                    editTextKorean.setText("")
+                    editTextEnglish.setText("")
+                    setText("")
+
+                    editTextName.requestFocus()
+
+                    true
                 }
             }
 
-            editTextAge.run{
-                setOnEditorActionListener { textView, i, keyEvent ->
-                    false
-                }
-            }
-
-            editTextKorean.run {
-                setOnEditorActionListener { textView, i, keyEvent ->
-                    false
-                }
-            }
-
-            editTextEnglish.run{
-                setOnEditorActionListener { textView, i, keyEvent ->
-                    false
-                }
-            }
-
-            editTextMath.run {
-                setOnEditorActionListener { textView, i, keyEvent ->
-                    val stu = Student(
-                        editTextName.text.toString(),
-                        editTextAge.text.toString().toInt(),
-                        editTextKorean.text.toString().toInt(),
-                        editTextEnglish.text.toString().toInt(),
-                        editTextMath.text.toString().toInt()
-                    )
-
-                    studentList.add(stu)
-
-                    editTextName.text.clear()
-                    editTextAge.text.clear()
-                    editTextKorean.text.clear()
-                    editTextKorean.text.clear()
-                    editTextEnglish.text.clear()
-                    editTextMath.text.clear()
-
-                    var num = textStudentNumber.text.toString().toInt()
-                    num++
-                    textStudentNumber.text = num.toString()
-
-                    false
-                }
-            }
-
-            buttonOutput.run {
+            buttonShowAgg.run{
                 setOnClickListener {
+
+                    // 각 과목별 총점과 평균
                     var koreanTotal = 0
                     var englishTotal = 0
                     var mathTotal = 0
 
-                    for (s in studentList){
-                        s.logCatInfo()
+                    // 학생의 수 만큼 반복한다.
+                    for(studentInfo in studentList){
+                        // 학생 정보 출력
+                        studentInfo.run{
+                            Log.d("studentInfo", "이름 : $name")
+                            Log.d("studentInfo", "나이 : $age")
+                            Log.d("studentInfo", "국어점수 : $korean")
+                            Log.d("studentInfo", "영어점수 : $english")
+                            Log.d("studentInfo", "수학점수 : $math")
+                            Log.d("studentInfo", "----------------------------")
 
-                        koreanTotal += s.korean
-                        englishTotal += s.english
-                        mathTotal += s.math
+                            // 각 점수를 누적한다.
+                            koreanTotal += korean
+                            englishTotal += english
+                            mathTotal += math
+                        }
                     }
 
-                    Log.d("studentInfo","국어 총점 : ${koreanTotal}, 영어 총점 : ${englishTotal}, 수학 총점 : ${mathTotal}")
-                    Log.d("studentInfo", "국어 평균 : ${koreanTotal / studentList.size}, 영어 평균 : ${englishTotal / studentList.size}, 수학 평균 : ${mathTotal / studentList.size}")
+                    // 평균을 구한다.
+                    val koreanAvg = koreanTotal / studentList.size
+                    val englishAvg = englishTotal / studentList.size
+                    val mathAvg = mathTotal / studentList.size
+
+                    Log.d("studentInfo", "국어 총점 : $koreanTotal")
+                    Log.d("studentInfo", "영어 총점 : $englishTotal")
+                    Log.d("studentInfo", "수학 총점 : $mathTotal")
+                    Log.d("studentInfo", "국어 평균 : $koreanAvg")
+                    Log.d("studentInfo", "영어 평균 : $englishAvg")
+                    Log.d("studentInfo", "수학 평균 : $mathAvg")
                 }
             }
         }
     }
-}
 
-class Student(val name:String, val age:Int, val korean:Int, val english:Int, val math:Int){
-    fun logCatInfo(){
-        Log.d("studentInfo", "이름 : ${name}, 나이 : ${age}, 국어 : ${korean}, 영어 : ${english}, 수학 : ${math}")
-    }
+    // 사용자 정보를 담을 클래스
+    data class StudentInfo(var name:String, var age:Int, var korean:Int, var english:Int, var math:Int)
 }
