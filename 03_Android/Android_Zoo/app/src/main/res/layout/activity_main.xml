@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioButtonElephant">
+
+                <RadioButton
+                    android:id="@+id/radioButtonElephant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="코끼리"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="고양이"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonDog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="강아지"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="이름"
+                android:inputType="text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <EditText
+                android:id="@+id/editTextLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="코의 길이"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <Button
+                android:id="@+id/buttonOutput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTextTalent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="개인기 개수"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <EditText
+                android:id="@+id/editTextSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="냥펀치 속도"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
