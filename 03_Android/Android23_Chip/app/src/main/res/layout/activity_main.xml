@@ -11,6 +11,7 @@
         android:id="@+id/chip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:checkable="true"
         android:text="Action"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
