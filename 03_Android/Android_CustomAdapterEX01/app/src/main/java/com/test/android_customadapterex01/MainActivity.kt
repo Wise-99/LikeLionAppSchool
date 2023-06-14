@@ -80,8 +80,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
             return mainView
+
+
         }
     }
 }
