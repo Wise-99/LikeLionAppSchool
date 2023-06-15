@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonInsert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="등록" />
+
+        <Button
+            android:id="@+id/buttonShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="보기" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutInsert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="포지션 선택"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/radioFoward">
+
+            <RadioButton
+                android:id="@+id/radioFoward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="공격수"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <RadioButton
+                android:id="@+id/radioMidfielder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="미드필더"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <RadioButton
+                android:id="@+id/radioDefender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="수비수"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <RadioButton
+                android:id="@+id/radioGoalkeeper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="골키퍼"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="이름"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutShow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>
