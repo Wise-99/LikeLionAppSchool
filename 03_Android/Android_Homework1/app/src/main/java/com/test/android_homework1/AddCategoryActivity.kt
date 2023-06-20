@@ -16,6 +16,7 @@ class AddCategoryActivity : AppCompatActivity() {
         setContentView(activityAddCategoryBinding.root)
 
         activityAddCategoryBinding.run {
+            // 추가 버튼 클릭 시
             buttonCategoryAdd.setOnClickListener {
                 val addIntent = Intent()
                 addIntent.putExtra("newCategoryName", editTextCategoryName.text.toString())
@@ -23,7 +24,7 @@ class AddCategoryActivity : AppCompatActivity() {
 
                 finish()
             }
-
+            // 취소 버튼 클릭 시 그대로 종료
             buttonCategoryAddCancel.setOnClickListener {
                 finish()
             }

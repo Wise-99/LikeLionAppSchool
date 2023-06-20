@@ -12,7 +12,7 @@
         android:id="@+id/textViewBeforeTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="제목 : "
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="TextView"
+        android:text="내용 : "
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -39,8 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:gravity="start|top"
         android:hint="수정할 메모 내용 입력"
-        android:inputType="text"
+        android:inputType="textMultiLine"
+        android:lines="5"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <LinearLayout
@@ -50,6 +52,7 @@
 
         <Button
             android:id="@+id/buttonMemoUpdate"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -57,6 +60,7 @@
 
         <Button
             android:id="@+id/buttonMemoUpdateCancel"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

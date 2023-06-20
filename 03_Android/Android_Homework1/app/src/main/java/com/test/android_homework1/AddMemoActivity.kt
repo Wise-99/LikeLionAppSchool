@@ -20,8 +20,9 @@ class AddMemoActivity : AppCompatActivity() {
             buttonAddMemo.setOnClickListener {
                 val addIntent = Intent()
                 val title = editTextAddMemoTitle.text.toString()
-                val content = editTextAddMemoTitle.text.toString()
+                val content = editTextAddMemoContent.text.toString()
 
+                // 제목과 내용 전달
                 addIntent.putExtra("newTitle", title)
                 addIntent.putExtra("newContent", content)
                 setResult(RESULT_OK, addIntent)

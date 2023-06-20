@@ -19,9 +19,10 @@ class UpdateMemoActivity : AppCompatActivity() {
             val beforeContent = intent.getStringExtra("memoContent")
             val memoPosition = intent.getIntExtra("memoPosition", 0)
 
-            textViewBeforeTitle.text = beforeTitle
-            textViewBeforeContent.text = beforeContent
+            textViewBeforeTitle.append(beforeTitle)
+            textViewBeforeContent.append(beforeContent)
 
+            // 수정 버튼 클릭 시
             buttonMemoUpdate.setOnClickListener {
                 val updateTitle = editTextUpdateMemoTitle.text.toString()
                 val updateContent = editTextUpdateMemoContent.text.toString()
@@ -31,14 +32,12 @@ class UpdateMemoActivity : AppCompatActivity() {
                 updateIntent.putExtra("newContent", updateContent)
 
                 updateIntent.putExtra("beforeTitle", beforeTitle)
-                updateIntent.putExtra("beforeContent", beforeContent)
-
                 updateIntent.putExtra("memoPosition", memoPosition)
-                setResult(RESULT_FIRST_USER+1, updateIntent)
 
+                setResult(RESULT_FIRST_USER+1, updateIntent)
                 finish()
             }
-
+            // 취소 버튼 클릭시 그대로 종료
             buttonMemoUpdateCancel.setOnClickListener {
                 finish()
             }

@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="메모 제목 입력"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/editTextAddMemoContent"
@@ -24,15 +25,19 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="메모 내용 입력"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonAddMemo"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,6 +45,7 @@
 
         <Button
             android:id="@+id/buttonAddMemoCancel"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
