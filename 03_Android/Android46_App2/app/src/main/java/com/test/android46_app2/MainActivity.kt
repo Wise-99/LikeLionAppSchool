@@ -49,14 +49,14 @@ class MainActivity : AppCompatActivity() {
             buttonShowMap.run{
                 setOnClickListener {
                     // 위도와 경도를 문자열로 만들어준다.
-                    // val address = "geo:37.243243,131.861601"
-                    // val uri = Uri.parse(address)
-                    // val newIntent = Intent(Intent.ACTION_VIEW, uri)
+                     val address = "geo:37.243243,131.861601"
+                     val uri = Uri.parse(address)
+                     val newIntent = Intent(Intent.ACTION_VIEW, uri)
 
                     // 웹사이트
-                    val address = "http://developer.android.com"
-                    val uri = Uri.parse(address)
-                    val newIntent = Intent(Intent.ACTION_VIEW, uri)
+//                    val address = "http://developer.android.com"
+//                    val uri = Uri.parse(address)
+//                    val newIntent = Intent(Intent.ACTION_VIEW, uri)
 
                     startActivity(newIntent)
                 }
