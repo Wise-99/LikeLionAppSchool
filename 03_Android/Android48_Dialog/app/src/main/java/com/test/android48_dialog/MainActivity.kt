@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 builder.setNegativeButton("취소", null)
+                builder.show()
             }
 
             button3.setOnClickListener {

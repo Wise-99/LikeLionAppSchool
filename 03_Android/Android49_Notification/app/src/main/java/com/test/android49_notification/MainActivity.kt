@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     val NOTIFICATION_CHANNEL2_ID = "CHANNEL2"
 
     // 사용자에게 노출 시킬 채널의 이름
-    val NOTIFICATION_CHANNEL1_NAME = "찻반쩨 채널"
-    val NOTIFICATION_CHANNEL2_NAME = "두반쩨 채널"
+    val NOTIFICATION_CHANNEL1_NAME = "첫번째 채널"
+    val NOTIFICATION_CHANNEL2_NAME = "두번째 채널"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
