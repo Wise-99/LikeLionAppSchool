@@ -3,12 +3,17 @@ package com.test.android55_fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.test.android55_fragment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var activityMainBinding: ActivityMainBinding
+    // 학생 정보들을 담을 리스트
+    val studentList = mutableListOf<StudentInfo>()
+
+    // 터치한 항목의 순서 값
+    var rowPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 newFragment = InputFragment()
             }
             FragmentName.FRAGMENT_RESULT -> {
-
+                newFragment = ResultFragment()
             }
         }
 
@@ -60,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     // Fragment를 BackStack에서 제거한다.
     fun removeFragment(name:FragmentName){
-        supportFragmentManager.popBackStack(name.str, 0)
+        supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 }
 
@@ -70,3 +75,6 @@ enum class FragmentName(val str:String){
     FRAGMENT_INPUT("InputFragment"),
     FRAGMENT_RESULT("ResultFragment")
 }
+
+// 정보를 담을 클래스
+data class StudentInfo(var name:String, var age:Int, var korean:Int)
