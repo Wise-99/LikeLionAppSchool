@@ -15,6 +15,7 @@ class InputFragment : Fragment() {
 
     lateinit var fragmentInputBinding: FragmentInputBinding
     lateinit var mainActivity: MainActivity
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
