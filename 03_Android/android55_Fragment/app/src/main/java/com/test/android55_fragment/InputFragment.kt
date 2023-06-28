@@ -15,13 +15,17 @@ class InputFragment : Fragment() {
 
     lateinit var fragmentInputBinding: FragmentInputBinding
     lateinit var mainActivity: MainActivity
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+
         mainActivity = activity as MainActivity
+
         fragmentInputBinding = FragmentInputBinding.inflate(layoutInflater)
+
 
         fragmentInputBinding.editTextInputUserName.requestFocus()
 
@@ -31,12 +35,12 @@ class InputFragment : Fragment() {
             imm.showSoftInput(fragmentInputBinding.editTextInputUserName, 0)
         }
 
-        fragmentInputBinding.run {
-            editTextInputUserKorean.run {
-                setOnEditorActionListener { v, actionId, event ->
+        fragmentInputBinding.run{
+            editTextInputKorean.run{
+                setOnEditorActionListener { textView, i, keyEvent ->
                     val name = editTextInputUserName.text.toString()
                     val age = editTextInputUserAge.text.toString().toInt()
-                    val korean = editTextInputUserKorean.text.toString().toInt()
+                    val korean = editTextInputKorean.text.toString().toInt()
 
                     val studentInfo = StudentInfo(name, age, korean)
                     mainActivity.studentList.add(studentInfo)
@@ -51,3 +55,9 @@ class InputFragment : Fragment() {
         return fragmentInputBinding.root
     }
 }
+
+
+
+
+
+

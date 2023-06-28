@@ -21,18 +21,20 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Fragment를 관리하는 Activity 객체를 가져온다.
+        // Inflate the layout for this fragment
+
+        // Fragment를 관리하는 Activity객체를 가져온다.
         mainActivity = activity as MainActivity
-        // ViewBinding
+        // View Binding
         fragmentMainBinding = FragmentMainBinding.inflate(layoutInflater)
 
-        fragmentMainBinding.run {
+        fragmentMainBinding.run{
             buttonMain1.setOnClickListener {
-                // Fragment를 교체한다.
+                // Fragment를 교채한다.
                 mainActivity.replaceFragment(FragmentName.FRAGMENT_INPUT, true, true)
             }
 
-            recyclerViewMain.run {
+            recyclerViewMain.run{
                 adapter = MainRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
             }
@@ -41,15 +43,16 @@ class MainFragment : Fragment() {
         return fragmentMainBinding.root
     }
 
-    inner class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHilderClass>(){
-        inner class MainViewHilderClass(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root){
-            var textViewRow : TextView
+    inner class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHolderClass>(){
+
+        inner class MainViewHolderClass(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root){
+            var textViewRow:TextView
 
             init{
                 textViewRow = rowBinding.textViewRow
 
                 rowBinding.root.setOnClickListener {
-                    // 터치한 항목의 위치 값을 변수에 담아준다.
+                    // 터치한 항목의 위치값을 변수에 담아준다.
                     mainActivity.rowPosition = adapterPosition
                     // ResultFragment로 변경한다.
                     mainActivity.replaceFragment(FragmentName.FRAGMENT_RESULT, true, true)
@@ -57,9 +60,9 @@ class MainFragment : Fragment() {
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHilderClass {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolderClass {
             val rowBinding = RowBinding.inflate(layoutInflater)
-            val mainViewHolderClass = MainViewHilderClass(rowBinding)
+            val mainViewHolderClass = MainViewHolderClass(rowBinding)
 
             val params = RecyclerView.LayoutParams(
                 RecyclerView.LayoutParams.MATCH_PARENT,
@@ -74,8 +77,14 @@ class MainFragment : Fragment() {
             return mainActivity.studentList.size
         }
 
-        override fun onBindViewHolder(holder: MainViewHilderClass, position: Int) {
+        override fun onBindViewHolder(holder: MainViewHolderClass, position: Int) {
             holder.textViewRow.text = mainActivity.studentList[position].name
         }
     }
 }
+
+
+
+
+
+
