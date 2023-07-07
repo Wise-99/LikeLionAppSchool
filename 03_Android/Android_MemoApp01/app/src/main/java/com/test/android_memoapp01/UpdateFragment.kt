@@ -8,6 +8,7 @@ import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,10 @@ class UpdateFragment : Fragment() {
                 imm.showSoftInput(editTextUpdateTitle, 0)
             }
 
+            // 기존 입력 메모 가져오기
+            editTextUpdateTitle.setText(MainFragment.memoList[MainFragment.rowPosition].title)
+            editTextUpdateContent.setText(MainFragment.memoList[MainFragment.rowPosition].content)
+
             toolbarUpdate.run {
                 title = "메모 수정"
                 setTitleTextColor(Color.WHITE)
@@ -47,23 +52,9 @@ class UpdateFragment : Fragment() {
                     var title = ""
                     var content = ""
 
-                    // 제목 입력 안했을 때
-                    if (editTextUpdateTitle.text.toString() == ""){
-                        title = MainFragment.memoList[MainFragment.rowPosition].title
-                    }
-                    // 제목 입력했을 때
-                    else {
-                        title = editTextUpdateTitle.text.toString()
-                    }
+                    title = editTextUpdateTitle.text.toString()
+                    content = editTextUpdateContent.text.toString()
 
-                    // 내용 입력 안했을 때
-                    if (editTextUpdateContent.text.toString() == ""){
-                        content = MainFragment.memoList[MainFragment.rowPosition].content
-                    }
-                    // 내용 입력했을 때
-                    else {
-                        content = editTextUpdateContent.text.toString()
-                    }
                     // 날짜는 저장되어있던 날짜를 다시 가져온다.
                     val date = MainFragment.memoList[MainFragment.rowPosition].date
 
