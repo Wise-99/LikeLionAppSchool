@@ -7,6 +7,10 @@ android {
     namespace 'com.test.android77_preferencesscreen'
     compileSdk 33
 
+    viewBinding{
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.test.android77_preferencesscreen"
         minSdk 24
