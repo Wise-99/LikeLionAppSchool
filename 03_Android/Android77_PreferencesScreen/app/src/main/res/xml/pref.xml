@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="입력 요소">
+    <PreferenceCategory android:title="입력요소">
 
         <EditTextPreference
             android:defaultValue="안녕하세요"
@@ -12,45 +12,48 @@
             android:title="문자열 입력"
             app:dependency="data2"
             app:dialogIcon="@android:drawable/ic_menu_add"
-            app:icon="@android:drawable/btn_dialog"
-            app:summary="문자열 입력 요소입니다" />
+            app:dialogMessage="문자열 입력 요소입니다"
+            app:dialogTitle="문자열 입력"
+            app:icon="@android:drawable/ic_menu_agenda"
+            app:summary="문자열 입력 요소 입니다" />
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="data2"
             android:title="체크박스"
-            app:icon="@android:drawable/ic_dialog_info"
+            app:icon="@android:drawable/ic_menu_always_landscape_portrait"
             app:summary="체크박스 요소입니다"
-            app:summaryOff="체크박스가 해제되어 있습니다"
-            app:summaryOn="체크박스가 체크되어 있습니다" />
+            app:summaryOff="체큽막스가 체크 해제 되어 있습니다"
+            app:summaryOn="체크박스 체크 되어 있습니다" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="data3"
             android:title="스위치"
-            app:icon="@android:drawable/ic_menu_recent_history"
-            app:summary="스위치 요소입니다"
+            app:icon="@android:drawable/ic_menu_manage"
+            app:summary="스위치 요소 입니다"
             app:summaryOff="스위치 OFF"
             app:summaryOn="스위치 ON"
             app:switchTextOff="Switch Text Off"
             app:switchTextOn="Switch Text On" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="리스트 요소">
+    <PreferenceCategory android:title="리스트요소">
 
         <ListPreference
             android:defaultValue="value1"
             android:entries="@array/title_list"
             android:entryValues="@array/value_list"
-            android:key="list_preference_1"
-            android:title="List preference"
-            app:dependency="단일 리스트 요소 입니다"
+            android:key="data4"
+            android:title="단일 리스트 요소"
             app:dialogIcon="@android:drawable/ic_delete"
-            app:icon="@android:drawable/btn_star_big_on"
-            app:summary="단일 리스트 요소" />
+            app:icon="@android:drawable/ic_menu_mylocation"
+            app:summary="단일 리스트 요소 입니다" />
         <MultiSelectListPreference
             android:defaultValue="@array/default_list"
             android:entries="@array/title_list"
             android:entryValues="@array/value_list"
             android:key="data5"
             android:title="다중 선택 리스트 요소"
+            app:dialogIcon="@android:drawable/stat_notify_sync"
+            app:icon="@android:drawable/ic_dialog_alert"
             app:summary="다중 선택 리스트 요소 입니다" />
     </PreferenceCategory>
 </PreferenceScreen>

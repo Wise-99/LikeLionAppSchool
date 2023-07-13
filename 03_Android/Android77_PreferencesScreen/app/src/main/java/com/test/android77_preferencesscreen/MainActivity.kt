@@ -16,11 +16,24 @@ class MainActivity : AppCompatActivity() {
         val RESULT_FRAGMENT = "ResultFragment"
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        activityMainBinding.run{
+            button.setOnClickListener {
+                replaceFragment(SETTING_FRAGMENT, false, false, null)
+            }
+
+            button2.setOnClickListener {
+                replaceFragment(RESULT_FRAGMENT, false, false, null)
+            }
+        }
+
+        replaceFragment(SETTING_FRAGMENT, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드

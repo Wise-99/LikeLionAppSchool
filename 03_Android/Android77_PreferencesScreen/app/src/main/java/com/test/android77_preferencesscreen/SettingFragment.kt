@@ -5,55 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.preference.PreferenceFragmentCompat
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SettingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+// build.gradle 에 androidx.perference:perference 라이브러리를 추가한다.
+class SettingFragment : PreferenceFragmentCompat() {
+    // PreferenceScreen이 생성될 때 호출된다
+    // PreferenceScreen을 구성하기 위한 xml 파일을 지정한다.
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.pref, rootKey)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false)
-    }
+    // EditTextPreference
+    // defaultValue : 초기값
+    // title : 화면에 보여지는 이름
+    // key : 데이터를 가져올 때 사용하는 이름
+    // summary : 표시는 설명
+    // icon : 좌측에 표시될 아이콘
+    // dialogIcon : 입력을 위해 뜨는 다이얼로그의 아이콘
+    // dialogTitle : 입력을 위해 뜨는 다이얼로그의 타이틀
+    // dialogMessage : 입력을 위해 뜨는 다이얼로그의 메시지
+    // dependency : true나 false를 저장하는 요소의 값에 따라 활성화 비활성화가 설정된다.
+    // true면 활성화되고, false면 비활성화된다.
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    // CheckBoxPreference
+    // defaultValue : 초기값
+    // key : 데이터를 가졍로 때 사용하는 이름
+    // title : 화면에 보여지는 이름
+    // summary : 표시되는 설명
+    // icon : 좌측에 표시될 아이콘
+    // summaryOff : 체크 해제 되어 있을 때 보여줄 설명
+    // summaryOn : 체크 되어 있을 때 보여줄 설명
+    // dependency : true나 false를 저장하는 요소의 값에 따라 활성화 비활성화가 설정된다.
+    // true면 활성화되고, false면 비활성화된다.
+
+    // SwitchPreference
+    // defaultValue : 초기값
+    // key : 데이터를 가졍로 때 사용하는 이름
+    // title : 화면에 보여지는 이름
+    // summary : 표시되는 설명
+    // icon : 좌측에 표시될 아이콘
+    // summaryOff : off 상태 있을 때 보여줄 설명
+    // summaryOn : on 상태 있을 때 보여줄 설명
+    // dependency : true나 false를 저장하는 요소의 값에 따라 활성화 비활성화가 설정된다.
+    // true면 활성화되고, false면 비활성화된다.
+
+    // ListPreference
+    // defaultValue : 초기값
+    // key : 데이터를 가졍로 때 사용하는 이름
+    // title : 화면에 보여지는 이름
+    // icon : 좌측에 표시될 아이콘
+    // summary : 표시되는 설명
+    // dialogIcon : 입력을 위해 뜨는 다이얼로그의 아이콘
+    // entries : 화면상에 보여줄 항목의 문자열
+    // entryValues : 코드에서 사용할 값
+
+    // MultiSelectListPreference
+    // defaultValue : 초기값
+    // key : 데이터를 가졍로 때 사용하는 이름
+    // title : 화면에 보여지는 이름
+    // icon : 좌측에 표시될 아이콘
+    // summary : 표시되는 설명
+    // dialogIcon : 입력을 위해 뜨는 다이얼로그의 아이콘
+    // entries : 화면상에 보여줄 항목의 문자열
+    // entryValues : 코드에서 사용할 값
 }
