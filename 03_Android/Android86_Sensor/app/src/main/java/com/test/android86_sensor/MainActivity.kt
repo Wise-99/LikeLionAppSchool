@@ -11,19 +11,19 @@ import com.test.android86_sensor.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding: ActivityMainBinding
-    // 센서로부터 측정된 값을 받아오면 동작하는 리스너
-    var sensorListener: SensorEventListener? = null
+    // 센서로 부터 측정된 값을 받아오면 동작하는 리스너
+    var sensorListener:SensorEventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
-        activityMainBinding.run {
+        activityMainBinding.run{
             // 중지 버튼
-            button.run {
+            button.run{
                 setOnClickListener {
-                    if (sensorListener != null){
+                    if(sensorListener != null) {
                         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
                         // 센서가 측정한 값을 받아올 수 있는 리스너 연결을 해제한다.
                         sensorManager.unregisterListener(sensorListener)
@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            // 조도 센서
-            // 주변 밝기를 측정하는 센서
-            // lux 단위의 주변 밝기 값을 가져온다.
             // 조도 센서
             // 주변 밝기를 측정하는 센서
             // lux 단위의 주변 밝기 값을 가져온다.
@@ -58,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
                         // 조도 센서 객체를 가져온다.
                         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
-
                         // 센서로 부터 측정된 값을 가져올 리스너를 등록한다.
                         // 첫 번째 : 리스너
                         // 두 번째 : 연결할 센서 객체
@@ -81,13 +77,13 @@ class MainActivity : AppCompatActivity() {
             // 기압 센서
             // 공기압을 측정하는 센서
             // 실제 공기압을 위해 사용하기도 하지만 실내에서 사용자가의 고도를 측정하기 위한 용도로도 사용한다.
-            button3.run(){
+            button3.run{
                 setOnClickListener {
                     if(sensorListener == null){
                         // 리스너
                         sensorListener = object : SensorEventListener {
                             override fun onSensorChanged(p0: SensorEvent?) {
-                                textView.text =  "현재 기압 : ${p0?.values?.get(0)} millibar"
+                                textView.text = "현재 기압 : ${p0?.values?.get(0)} millibar"
                             }
 
                             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -146,9 +142,9 @@ class MainActivity : AppCompatActivity() {
                         // 리스너
                         sensorListener = object : SensorEventListener {
                             override fun onSensorChanged(p0: SensorEvent?) {
-                                textView.text = "X축의 각속도 : ${p0?.values?.get(0)}"
-                                textView2.text = "Y축의 각속도 : ${p0?.values?.get(1)}"
-                                textView3.text = "Z축의 각속도 : ${p0?.values?.get(2)}"
+                                textView.text = "X 축의 각속도 : ${p0?.values?.get(0)}"
+                                textView2.text = "Y 축의 각속도 : ${p0?.values?.get(1)}"
+                                textView3.text = "Z 축의 각속도 : ${p0?.values?.get(2)}"
                             }
 
                             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -175,9 +171,9 @@ class MainActivity : AppCompatActivity() {
                         // 리스너
                         sensorListener = object : SensorEventListener {
                             override fun onSensorChanged(p0: SensorEvent?) {
-                                textView.text = "X축의 기울기 : ${p0?.values?.get(0)}"
-                                textView2.text = "Y축의 기울기 : ${p0?.values?.get(1)}"
-                                textView3.text = "Z축의 기울기 : ${p0?.values?.get(2)}"
+                                textView.text = "X 축의 기울기 : ${p0?.values?.get(0)}"
+                                textView2.text = "Y 축의 기울기 : ${p0?.values?.get(1)}"
+                                textView3.text = "Z 축의 기울기 : ${p0?.values?.get(2)}"
                             }
 
                             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -204,9 +200,9 @@ class MainActivity : AppCompatActivity() {
                         // 리스너
                         sensorListener = object : SensorEventListener {
                             override fun onSensorChanged(p0: SensorEvent?) {
-                                textView.text = "X축 자기장 : ${p0?.values?.get(0)}"
-                                textView2.text = "Y축 자기장 : ${p0?.values?.get(1)}"
-                                textView3.text = "Z축 자기장 : ${p0?.values?.get(2)}"
+                                textView.text = "X 축 자기장 : ${p0?.values?.get(0)}"
+                                textView2.text = "Y 축 자기장 : ${p0?.values?.get(1)}"
+                                textView3.text = "Z 축 자기장 : ${p0?.values?.get(2)}"
                             }
 
                             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -224,6 +220,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+
 
         }
 
