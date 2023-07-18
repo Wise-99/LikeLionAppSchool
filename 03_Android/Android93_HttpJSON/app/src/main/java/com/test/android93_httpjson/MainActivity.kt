@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
 
                     val data = stringBuffer.toString()
 
+                    runOnUiThread {
+                        textView.text = ""
+                    }
+
                     // JSON 데이터 분석
                     // { } : JSONObject, 이름 - 값 형태
                     // [ ] :JSONArray, 0부터 1씩 증가하는 순서값을 가지고 관리
@@ -62,8 +66,6 @@ class MainActivity : AppCompatActivity() {
                     val name = root.getString("name")
 
                     runOnUiThread {
-                        textView.text = ""
-
                         textView.text = "count : ${count}\n"
                         textView.append("name : ${name}\n")
                     }
