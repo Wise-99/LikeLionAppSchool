@@ -8,7 +8,7 @@
         android:title="현재 위치 이동"
         app:showAsAction="always" />
     <item
-        android:id="@+id/itemChoicePalce"
+        android:id="@+id/itemChoicePlace"
         android:icon="@android:drawable/ic_menu_myplaces"
         android:title="장소 종류 선택"
         app:showAsAction="always" />
