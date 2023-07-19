@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.Mini01_LBS01" parent="Base.Theme.Mini01_LBS01" />
+
+    <!-- splash Screen Theme -->
+    <style name="AppTheme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/map</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Mini01_LBS01</item>
+    </style>
 </resources>
