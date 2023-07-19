@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity(),GoogleMap.OnMyLocationButtonClickListen
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-
-        val MAP_FRAGMENT = "MapFragment"
     }
 
     val permissionList = arrayOf(
@@ -54,6 +52,23 @@ class MainActivity : AppCompatActivity(),GoogleMap.OnMyLocationButtonClickListen
         val mapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
+
+        activityMainBinding.run {
+            toolbar.run {
+                inflateMenu(R.menu.menu)
+                setOnMenuItemClickListener {
+                    when(it?.itemId){
+                        R.id.itemChoicePalce -> {
+
+                        }
+                        R.id.itemCurrentLocation -> {
+
+                        }
+                    }
+                    false
+                }
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
