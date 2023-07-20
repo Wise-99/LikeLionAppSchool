@@ -4,6 +4,9 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.test.mini01_lbs01'
     compileSdk 33
@@ -19,6 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "PLACES_API_KEY", "" + properties['PLACES_API_KEY'] + ""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

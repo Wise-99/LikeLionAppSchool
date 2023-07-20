@@ -6,10 +6,11 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -22,6 +23,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.test.mini01_lbs01.databinding.ActivityMainBinding
+import com.test.mini01_lbs01.BuildConfig
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import kotlin.concurrent.thread
+
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -67,6 +76,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     // 현재 사용자 위치에 표시되는 마커
     var myMarker: Marker? = null
 
+    val placeMarkerList = mutableListOf<Marker>()
+
+    var currentLatitude = 0.0
+    var currentLongitude = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
@@ -90,7 +104,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                             getMyLocation()
                         }
                         R.id.itemChoicePlace -> {
+                            val adapter = ArrayAdapter<String>(this@MainActivity, android.R.layout.simple_list_item_1, dialogData)
 
+                            val builder = AlertDialog.Builder(this@MainActivity)
+                            builder.setTitle("리스트 다이얼로그")
+                            builder.setIcon(R.mipmap.ic_launcher)
+
+                            builder.setAdapter(adapter){ dialogInterface: DialogInterface, i: Int ->
+                                getPlaces(dialogData[i])
+                            }
+
+                            builder.setNegativeButton("취소", null)
+                            builder.show()
                         }
                     }
                     false
@@ -178,8 +203,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             myLocationListener = null
         }
 
+        currentLatitude = location.latitude
+        currentLongitude = location.longitude
+
         // 위도와 경도를 관리하는 객체를 생성한다.
-        val latLng = LatLng(location.latitude, location.longitude)
+        val latLng = LatLng(currentLatitude, currentLongitude)
 
         // 지도를 이용시키기 위한 객체를 생성한다.
         val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
@@ -195,13 +223,19 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             myMarker?.remove()
             myMarker = null
         }
-        // myMarker = mainGoogleMap.addMarker(markerOptions)
+        myMarker = mainGoogleMap.addMarker(markerOptions)
     }
 
-    fun getMyLocation(){
-        val a1 = ActivityCompat.checkSelfPermission(this@MainActivity, Manifest.permission.ACCESS_FINE_LOCATION)
-        val a2 = ActivityCompat.checkSelfPermission(this@MainActivity, Manifest.permission.ACCESS_COARSE_LOCATION)
-        if(a1 == PackageManager.PERMISSION_GRANTED && a2 == PackageManager.PERMISSION_GRANTED){
+    fun getMyLocation() {
+        val a1 = ActivityCompat.checkSelfPermission(
+            this@MainActivity,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        val a2 = ActivityCompat.checkSelfPermission(
+            this@MainActivity,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+        if (a1 == PackageManager.PERMISSION_GRANTED && a2 == PackageManager.PERMISSION_GRANTED) {
 
             val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -213,10 +247,76 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             // 위치 측정 요청
-            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) == true){
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) == true) {
                 locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
-                    0, 0f, myLocationListener!!)
+                    0, 0f, myLocationListener!!
+                )
+            }
+        }
+    }
+
+    fun getPlaces(data:String){
+        var serverAddress = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${currentLatitude}%2C${currentLongitude}&radius=50000&keyword=${data}&language=ko&key=${BuildConfig.PLACES_API_KEY}"
+
+        if (placeMarkerList.size != 0){
+            for (i in 0 until placeMarkerList.size){
+                placeMarkerList[i].remove()
+            }
+        }
+
+        thread {
+            val url = URL(serverAddress)
+
+            // 접속 후 스트림 추출
+            val httpURLConnection = url.openConnection() as HttpURLConnection
+
+            val inputStreamReader = InputStreamReader(httpURLConnection.inputStream, "UTF-8")
+            val bufferedReader = BufferedReader(inputStreamReader)
+
+            var str: String? = null
+            val stringBuffer = StringBuffer()
+            // 문서의 마지막까지 읽어온다.
+            do {
+                str = bufferedReader.readLine()
+                if (str != null) {
+                    stringBuffer.append(str)
+                }
+            } while (str != null)
+
+            val data = stringBuffer.toString()
+
+            // 최 상위가 { } 이므로 JSONObject를 생성한다.
+            val root = JSONObject(data)
+
+            // resultsArray
+            val resultsArray = root.getJSONArray("results")
+
+            for (idx in 0 until resultsArray.length()) {
+                // idx 번째 JSONObject를 추출한다.
+                val resultObject = resultsArray.getJSONObject(idx)
+                // geometry 추출
+                val geometry = resultObject.getJSONObject("geometry")
+                // location 추출
+                val location = geometry.getJSONObject("location")
+                // 좌표 추출
+                val lat = location.getDouble("lat")
+                val lng = location.getDouble("lng")
+                Log.d("qwerty", "$lat")
+                // name 추출
+                val name = resultObject.getString("name")
+
+                val vicinity = resultObject.getString("vicinity")
+
+                val latLng = LatLng(lat, lng)
+                val markerOptions = MarkerOptions()
+                markerOptions.position(latLng)
+                markerOptions.title(name)
+                markerOptions.snippet(vicinity)
+
+                runOnUiThread {
+                    placeMarkerList.add(mainGoogleMap.addMarker(markerOptions)!!)
+                }
             }
         }
     }
