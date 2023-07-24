@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        activityMainBinding.run {
-            recyclerView.run {
+        activityMainBinding.run{
+            recyclerView.run{
                 adapter = RecyclerViewAdapter()
                 layoutManager = CarouselLayoutManager()
                 // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
@@ -44,10 +44,11 @@ class MainActivity : AppCompatActivity() {
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>(){
         inner class ViewHolderClass(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root){
 
-            var carouselImageView: ImageView
+            var carouselImageView:ImageView
 
             init{
                 carouselImageView = rowBinding.carouselImageView
+
                 rowBinding.root.setOnClickListener {
                     activityMainBinding.imageView.setImageResource(imageRes[adapterPosition])
                 }
