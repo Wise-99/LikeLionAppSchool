@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Mini02_BoardProject01" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/material_dynamic_primary60</item>
+    </style>
+
+    <style name="Theme.Mini02_BoardProject01" parent="Base.Theme.Mini02_BoardProject01" />
+
+    <!-- Splash Screen -->
+    <style name="Theme.Splash" parent="Theme.Splash" tools:ignore="ResourceCycle">
+        <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">@color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">@mipmap/app_icon</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:ignore="NewApi">1000</item>
+        <item name="android:splashScreenTheme" tools:ignore="NewApi">@style/Theme.Mini02_BoardProject01</item>
+    </style>
+
+</resources>
