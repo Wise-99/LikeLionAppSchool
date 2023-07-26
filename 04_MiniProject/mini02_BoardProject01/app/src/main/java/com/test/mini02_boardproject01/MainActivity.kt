@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val JOIN_FRAGMENT = "JoinFragment"
         val ADD_USER_INFO_FRAGMENT = "AddUserInfoFragment"
         val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
+        val POST_LIST_FRAGMEMNT = "PostListFragment"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             JOIN_FRAGMENT -> JoinFragment()
             ADD_USER_INFO_FRAGMENT -> AddUserInfoFragment()
             BOARD_MAIN_FRAGMENT -> BoardMainFragment()
+            POST_LIST_FRAGMEMNT -> PostListFragment()
             else -> Fragment()
         }
 

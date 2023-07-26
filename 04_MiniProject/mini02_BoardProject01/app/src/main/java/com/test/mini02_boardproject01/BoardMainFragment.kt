@@ -50,22 +50,24 @@ class BoardMainFragment : Fragment() {
                         // 전체 게시판
                         R.id.item_board_main_all -> {
                             textViewTest.text = "전체 게시판을 눌렀습니다"
+                            mainActivity.replaceFragment(MainActivity.POST_LIST_FRAGMEMNT, true, null)
                         }
                         // 자유 게시판
                         R.id.item_board_main_free -> {
                             textViewTest.text = "자유 게시판을 눌렀습니다"
+                            mainActivity.replaceFragment(MainActivity.POST_LIST_FRAGMEMNT, true, null)
                         }
                         // 유머 게시판
                         R.id.item_board_main_gag -> {
-
+                            mainActivity.replaceFragment(MainActivity.POST_LIST_FRAGMEMNT, true, null)
                         }
                         // 질문 게시판
                         R.id.item_board_main_qna -> {
-
+                            mainActivity.replaceFragment(MainActivity.POST_LIST_FRAGMEMNT, true, null)
                         }
                         // 스포츠 게시판
                         R.id.item_board_main_sports -> {
-
+                            mainActivity.replaceFragment(MainActivity.POST_LIST_FRAGMEMNT, true, null)
                         }
                         // 사용자 정보 수정
                         R.id.item_board_main_user_info -> {
@@ -73,11 +75,13 @@ class BoardMainFragment : Fragment() {
                         }
                         // 로그아웃
                         R.id.item_board_main_logout -> {
-
+                            mainActivity.removeFragment(MainActivity.BOARD_MAIN_FRAGMENT)
+                            mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT, false, null)
                         }
-                        // 회원탈퇴
+                        // 회원 탈퇴
                         R.id.item_board_main_sign_out -> {
-
+                            mainActivity.removeFragment(MainActivity.BOARD_MAIN_FRAGMENT)
+                            mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT, false, null)
                         }
                     }
 
