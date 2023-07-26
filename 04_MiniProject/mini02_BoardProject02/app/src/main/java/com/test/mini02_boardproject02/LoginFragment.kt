@@ -33,6 +33,13 @@ class LoginFragment : Fragment() {
                     mainActivity.replaceFragment(MainActivity.JOIN_FRAGMENT, true, null)
                 }
             }
+
+            // 로그인 버튼
+            buttonLoginSubmit.run {
+                setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.BOARD_MAIN_FRAGMENT, false, null)
+                }
+            }
         }
 
         return fragmentLoginBinding.root

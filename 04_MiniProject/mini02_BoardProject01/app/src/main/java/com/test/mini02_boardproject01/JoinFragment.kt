@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.test.mini02_boardproject01.databinding.FragmentJoinBinding
 
-
 class JoinFragment : Fragment() {
 
     lateinit var fragmentJoinBinding: FragmentJoinBinding

@@ -10,7 +10,10 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.Mini02_BoardProject01" parent="Base.Theme.Mini02_BoardProject01" />
+    <!-- Toolbar -->
+    <style name="Theme.Mini02.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
+        <item name="colorPrimary">@color/material_dynamic_tertiary99</item>
+    </style>
 
     <!-- Splash Screen -->
     <style name="AppTheme.Splash" parent="Theme.SplashScreen">
@@ -20,9 +23,5 @@
         <item name="postSplashScreenTheme">@style/Theme.Mini02_BoardProject01</item>
     </style>
 
-    <!-- Toolbar -->
-    <style name="Theme.Mini02.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
-        <item name="colorPrimary">@color/material_dynamic_tertiary99</item>
-    </style>
-
+    <style name="Theme.Mini02_BoardProject01" parent="Base.Theme.Mini02_BoardProject01" />
 </resources>

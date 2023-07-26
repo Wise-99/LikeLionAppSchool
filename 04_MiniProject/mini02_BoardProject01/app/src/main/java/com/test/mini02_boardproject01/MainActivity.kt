@@ -16,7 +16,6 @@ import com.google.android.material.transition.MaterialSharedAxis
 import com.test.mini02_boardproject01.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     lateinit var activityMainBinding: ActivityMainBinding
 
     var newFragment : Fragment? = null
@@ -26,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val LOGIN_FRAGMENT = "LoginFragment"
         val JOIN_FRAGMENT = "JoinFragment"
         val ADD_USER_INFO_FRAGMENT = "AddUserInfoFragment"
+        val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             LOGIN_FRAGMENT -> LoginFragment()
             JOIN_FRAGMENT -> JoinFragment()
             ADD_USER_INFO_FRAGMENT -> AddUserInfoFragment()
+            BOARD_MAIN_FRAGMENT -> BoardMainFragment()
             else -> Fragment()
         }
 

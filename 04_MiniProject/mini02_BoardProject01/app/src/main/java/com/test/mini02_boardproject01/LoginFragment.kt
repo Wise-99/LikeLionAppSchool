@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.test.mini02_boardproject01.MainActivity
 import com.test.mini02_boardproject01.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -32,6 +31,13 @@ class LoginFragment : Fragment() {
                 setOnClickListener {
                     // JoinFragment를 보이게 한다.
                     mainActivity.replaceFragment(MainActivity.JOIN_FRAGMENT, true, null)
+                }
+            }
+
+            // 로그인 버튼
+            buttonLoginSubmit.run {
+                setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.BOARD_MAIN_FRAGMENT, false, null)
                 }
             }
         }
