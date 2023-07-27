@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
         val POST_LIST_FRAGMEMNT = "PostListFragment"
         val POST_WRITE_FRAGMENT = "PostWriteFragment"
+        val POST_READ_FRAGMENT = "PostReadFragment"
+        val POST_MODIFY_FRAGMENT = "PostModifyFragment"
         val MODIFY_USER_FRAGMENT = "ModifyUserFragment"
         val MODIFY_USER_BASIC_FRAGMENT = "ModifyUserBasicFragment"
         val MODIFY_USER_ADDITIONAL_FRAGMENT = "ModifyUserAdditionalFragment"
@@ -62,6 +64,8 @@ class MainActivity : AppCompatActivity() {
             BOARD_MAIN_FRAGMENT -> BoardMainFragment()
             POST_LIST_FRAGMEMNT -> PostListFragment()
             POST_WRITE_FRAGMENT -> PostWriteFragment()
+            POST_READ_FRAGMENT -> PostReadFragment()
+            POST_MODIFY_FRAGMENT -> PostModifyFragment()
             MODIFY_USER_FRAGMENT -> ModifyUserFragment()
             MODIFY_USER_BASIC_FRAGMENT -> ModifyUserBasicFragment()
             MODIFY_USER_ADDITIONAL_FRAGMENT -> ModifyUserAdditionalFragment()

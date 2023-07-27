@@ -45,8 +45,6 @@ class PostListFragment : Fragment() {
             }
         }
 
-
-
         return fragmentPostListBinding.root
     }
 
@@ -59,6 +57,10 @@ class PostListFragment : Fragment() {
             init {
                 rowPostListSubject = rowPostListBinding.rowPostListSubject
                 rowPostListNickName = rowPostListBinding.rowPostListNickName
+
+                rowPostListBinding.root.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
+                }
             }
         }
 
@@ -92,6 +94,10 @@ class PostListFragment : Fragment() {
             init {
                 rowPostListSubject = rowPostListBinding.rowPostListSubject
                 rowPostListNickName = rowPostListBinding.rowPostListNickName
+
+                rowPostListBinding.root.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, false, null)
+                }
             }
         }
 
