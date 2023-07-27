@@ -71,7 +71,7 @@ class BoardMainFragment : Fragment() {
                         }
                         // 사용자 정보 수정
                         R.id.item_board_main_user_info -> {
-
+                            mainActivity.replaceFragment(MainActivity.MODIFY_USER_FRAGMENT, true, null)
                         }
                         // 로그아웃
                         R.id.item_board_main_logout -> {
