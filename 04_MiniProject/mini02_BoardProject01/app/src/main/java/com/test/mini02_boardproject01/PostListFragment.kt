@@ -24,6 +24,16 @@ class PostListFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentPostListBinding.run {
+            searchBar.run {
+                inflateMenu(R.menu.menu_post_list)
+                setOnMenuItemClickListener {
+                    mainActivity.replaceFragment(MainActivity.POST_WRITE_FRAGMENT, true, null)
+
+                    false
+                }
+            }
+
+
             recyclerViewPostAll.run {
                 adapter = AllRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
