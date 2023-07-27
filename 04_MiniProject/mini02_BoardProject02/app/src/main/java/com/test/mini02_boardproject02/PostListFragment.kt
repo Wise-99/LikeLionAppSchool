@@ -70,7 +70,6 @@ class PostListFragment : Fragment() {
         }
     }
 
-    // 모든 게시글 목록을 보여주는 리사이클러 뷰의 어뎁터
     inner class ResultRecyclerViewAdapter : RecyclerView.Adapter<ResultRecyclerViewAdapter.ResultViewHolder>(){
         inner class ResultViewHolder(rowPostListBinding: RowPostListBinding) : RecyclerView.ViewHolder(rowPostListBinding.root){
             val rowPostListSubject : TextView

@@ -86,7 +86,7 @@ class BoardMainFragment : Fragment() {
                         }
                         // 사용자 정보 수정
                         R.id.item_board_main_user_info -> {
-                            replaceFragment(POST_LIST_FRAGMENT, false, false, null)
+                            replaceFragment(MODIFY_USER_FRAGMENT, false, false, null)
                         }
                         // 로그아웃
                         R.id.item_board_main_logout -> {
