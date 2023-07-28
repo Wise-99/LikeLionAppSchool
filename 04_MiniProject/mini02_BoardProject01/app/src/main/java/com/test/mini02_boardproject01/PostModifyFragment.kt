@@ -22,12 +22,35 @@ class PostModifyFragment : Fragment() {
         fragmentPostModifyBinding.run {
             toolbarPostModify.run {
                 title = "게시글 수정"
+                inflateMenu(R.menu.menu_post_modify)
+                setOnMenuItemClickListener {
+                    when(it.itemId){
+                        R.id.item_post_modify_camera -> {
+
+                        }
+                        R.id.item_post_modify_album -> {
+
+                        }
+                        R.id.item_post_modify_done -> {
+                            val title = textInputEditTextModifyTitle.text.toString()
+                            val content =textInputEditTextModifyContent.text.toString()
+                            if(title != "" && content != ""){
+                                mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
+                            } else {
+                                textInputLayoutModifyTitle.error = "입력 확인해주세요!"
+                            }
+                        }
+                    }
+                    true
+                }
 
                 setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
                 setNavigationOnClickListener {
                     mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
                 }
             }
+
+
         }
 
         return fragmentPostModifyBinding.root

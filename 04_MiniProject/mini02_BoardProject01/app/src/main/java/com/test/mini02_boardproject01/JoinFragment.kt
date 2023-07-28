@@ -1,11 +1,15 @@
 package com.test.mini02_boardproject01
 
+import android.content.Context
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.test.mini02_boardproject01.databinding.FragmentJoinBinding
+import kotlin.concurrent.thread
 
 class JoinFragment : Fragment() {
 
@@ -22,6 +26,16 @@ class JoinFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentJoinBinding.run{
+
+            textInputEditTextJoinUserId.requestFocus()
+
+            thread {
+                SystemClock.sleep(500)
+
+                val imm = mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(mainActivity.currentFocus, 0)
+            }
+
             // toolbar
             toolbarJoin.run{
                 title = "회원가입"
@@ -33,7 +47,15 @@ class JoinFragment : Fragment() {
             // 다음 버튼
             buttonJoinNext.run{
                 setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, null)
+                    val id = textInputEditTextJoinUserId.text.toString()
+                    val pw1 = textInputEditTextJoinUserPw.text.toString()
+                    val pw2 = textInputEditTextJoinUserPw2.text.toString()
+
+                    if (id != "" && pw1 != "" && pw2 != ""){
+                        if(pw1 == pw2){
+                            mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, null)
+                        }
+                    }
                 }
             }
         }

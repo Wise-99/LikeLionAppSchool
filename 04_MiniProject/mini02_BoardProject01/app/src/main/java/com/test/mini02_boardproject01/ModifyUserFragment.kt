@@ -20,23 +20,23 @@ class ModifyUserFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentModifyUserBinding.run {
-            toolbarModify.run {
-                title = "사용자 정보 수정"
 
-                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
-                setNavigationOnClickListener {
+            buttonModifyUserAccept.setOnClickListener {
+                val pw1 = textInputEditTextModifyUserPw.text.toString()
+                val pw2 = textInputEditTextModifyUserPw2.text.toString()
+
+                if (pw1 != pw2){
+                    textInputEditTextModifyUserPw.error = "비밀번호 오류"
+                } else if (textInputEditTextModifyUserInfoNickName.text.toString() == ""){
+                    textInputEditTextModifyUserPw.error = ""
+                    textInputLayoutModifyUserInfoNickName.error = "닉네임 입력 오류"
+                } else if (textInputEditTextModifyUserInfoAge.text.toString() == ""){
+                    textInputEditTextModifyUserPw.error = ""
+                    textInputLayoutModifyUserInfoNickName.error = ""
+                    textInputEditTextModifyUserInfoAge.error = "나이 입력 오류"
+                } else {
                     mainActivity.removeFragment(MainActivity.MODIFY_USER_FRAGMENT)
                 }
-            }
-
-            // 기본 정보 수정 버튼
-            buttonModifyUserBasic.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MODIFY_USER_BASIC_FRAGMENT, true, null)
-            }
-
-            // 추가 정보 수정 버튼
-            buttonModifyUserAdditional.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MODIFY_USER_ADDITIONAL_FRAGMENT,true, null)
             }
         }
 

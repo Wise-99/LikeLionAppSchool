@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         val POST_READ_FRAGMENT = "PostReadFragment"
         val POST_MODIFY_FRAGMENT = "PostModifyFragment"
         val MODIFY_USER_FRAGMENT = "ModifyUserFragment"
-        val MODIFY_USER_BASIC_FRAGMENT = "ModifyUserBasicFragment"
-        val MODIFY_USER_ADDITIONAL_FRAGMENT = "ModifyUserAdditionalFragment"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -67,8 +65,6 @@ class MainActivity : AppCompatActivity() {
             POST_READ_FRAGMENT -> PostReadFragment()
             POST_MODIFY_FRAGMENT -> PostModifyFragment()
             MODIFY_USER_FRAGMENT -> ModifyUserFragment()
-            MODIFY_USER_BASIC_FRAGMENT -> ModifyUserBasicFragment()
-            MODIFY_USER_ADDITIONAL_FRAGMENT -> ModifyUserAdditionalFragment()
             else -> Fragment()
         }
 

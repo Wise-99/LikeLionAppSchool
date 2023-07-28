@@ -26,6 +26,14 @@ class LoginFragment : Fragment() {
                 title = "로그인"
             }
 
+            textInputEditTextLoginUserPw.run {
+                setOnEditorActionListener { v, actionId, event ->
+                    checkIdPw()
+
+                    true
+                }
+            }
+
             // 회원가입 버튼
             buttonLoginJoin.run{
                 setOnClickListener {
@@ -37,7 +45,7 @@ class LoginFragment : Fragment() {
             // 로그인 버튼
             buttonLoginSubmit.run {
                 setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.BOARD_MAIN_FRAGMENT, false, null)
+                    checkIdPw()
                 }
             }
         }
@@ -45,4 +53,18 @@ class LoginFragment : Fragment() {
         return fragmentLoginBinding.root
     }
 
+    fun checkIdPw(){
+        if(fragmentLoginBinding.textInputEditTextLoginUserId.text.toString() == ""){
+            fragmentLoginBinding.textInputLayoutLoginUserId.error = "아이디 오류"
+        }
+
+        else if (fragmentLoginBinding.textInputEditTextLoginUserPw.text.toString() == ""){
+            fragmentLoginBinding.textInputLayoutLoginUserId.error = ""
+            fragmentLoginBinding.textInputLayoutLoginUserPw.error = "비밀번호 오류"
+        }
+
+        else {
+            mainActivity.replaceFragment(MainActivity.BOARD_MAIN_FRAGMENT, false, null)
+        }
+    }
 }

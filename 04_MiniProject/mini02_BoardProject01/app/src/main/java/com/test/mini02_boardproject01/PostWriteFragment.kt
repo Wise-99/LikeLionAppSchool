@@ -1,6 +1,7 @@
 package com.test.mini02_boardproject01
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,16 +11,19 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.test.mini02_boardproject01.databinding.FragmentPostWriteBinding
 import java.io.File
+import kotlin.concurrent.thread
 
 class PostWriteFragment : Fragment() {
 
@@ -131,6 +135,16 @@ class PostWriteFragment : Fragment() {
         }
 
         fragmentPostWriteBinding.run {
+
+            textInputEditTextWriteTitle.requestFocus()
+
+            thread {
+                SystemClock.sleep(500)
+
+                val imm = mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(mainActivity.currentFocus, 0)
+            }
+
             toolbarPostWrtie.run {
                 inflateMenu(R.menu.menu_write)
                 setOnMenuItemClickListener {
@@ -173,7 +187,19 @@ class PostWriteFragment : Fragment() {
 
                         // 글 저장
                         R.id.item_post_write_save -> {
-                            mainActivity.removeFragment(MainActivity.POST_WRITE_FRAGMENT)
+                            val title = textInputEditTextWriteTitle.text.toString()
+                            val content = textInputEditTextWriteContent.text.toString()
+
+                            if (title != "" && content != ""){
+                                mainActivity.removeFragment(MainActivity.POST_WRITE_FRAGMENT)
+                            } else {
+                                if (title == ""){
+                                    textInputLayoutWriteTitle.error = "제목을 확인해주세요."
+                                }
+                                if(content == ""){
+                                    textInputLayoutWriteContent.error = "내용을 확인해주세요."
+                                }
+                            }
                         }
                     }
 

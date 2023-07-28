@@ -18,6 +18,7 @@ class PostReadFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentPostReadBinding = FragmentPostReadBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
         fragmentPostReadBinding.run {
             toolbarPostRead.run {
