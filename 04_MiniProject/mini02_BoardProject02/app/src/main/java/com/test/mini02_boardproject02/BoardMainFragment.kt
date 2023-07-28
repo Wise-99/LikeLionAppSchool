@@ -104,6 +104,9 @@ class BoardMainFragment : Fragment() {
                     false
                 }
             }
+
+            // 첫 화면이 나오도록 한다.
+            replaceFragment(POST_LIST_FRAGMENT, false, false, null)
         }
 
         return fragmentBoardMainBinding.root
