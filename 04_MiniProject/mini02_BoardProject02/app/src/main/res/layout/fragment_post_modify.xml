@@ -50,6 +50,7 @@
                 app:startIconDrawable="@drawable/edit_square_24px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPostModifyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="내용입니다" />
