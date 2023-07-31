@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
                 adapter = MainFragmentStateAdapter(this@MainActivity)
 
                 // 스크롤 방향을 오른쪽으로 설정
-                // layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
+                layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
 
                 // 스크롤 방향을 위 아래로 설정
-                orientation = ViewPager2.ORIENTATION_VERTICAL
+                //orientation = ViewPager2.ORIENTATION_VERTICAL
 
                 // 페이지가 변경될 때
                 // 고차 함수가 지원되지 않아 중복 클래스?로 설정

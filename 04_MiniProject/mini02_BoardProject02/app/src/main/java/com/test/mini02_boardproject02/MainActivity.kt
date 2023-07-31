@@ -160,3 +160,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+// 사용자 정보를 담을 클래스
+data class UserClass(var userIdx:Long,
+                     var userId:String,
+                     var userPw:String,
+                     var userNickname: String,
+                     var userAge:Long,
+                     var hobby1:Boolean,
+                     var hobby2:Boolean,
+                     var hobby3:Boolean,
+                     var hobby4:Boolean,
+                     var hobby5:Boolean,
+                     var hobby6:Boolean)
