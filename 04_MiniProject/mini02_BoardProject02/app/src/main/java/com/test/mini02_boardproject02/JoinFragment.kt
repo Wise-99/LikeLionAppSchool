@@ -83,6 +83,18 @@ class JoinFragment : Fragment() {
                 return
             }
 
+            if (joinUserPw2.isEmpty()){
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setTitle("비밃번호 오류")
+                builder.setMessage("비밀번호를 입력해주세요")
+                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+
+                    mainActivity.showSoftInput(textInputEditTextJoinUserPw2)
+                }
+                builder.show()
+                return
+            }
+
             if (joinUserPw != joinUserPw2){
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setTitle("비밃번호 오류")
