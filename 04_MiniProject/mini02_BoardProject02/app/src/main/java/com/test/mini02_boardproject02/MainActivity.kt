@@ -4,17 +4,20 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import android.view.inputmethod.InputMethodManager
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.mini02_boardproject02.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -143,6 +146,17 @@ class MainActivity : AppCompatActivity() {
 
             // 애니메이션 가동
             objectAnimator.start()
+        }
+    }
+
+    // 입력 요소에 포커스를 주는 메서드
+    fun showSoftInput(view : View){
+        view.requestFocus()
+
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        thread {
+            SystemClock.sleep(200)
+            inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 }
