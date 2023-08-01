@@ -12,7 +12,6 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.test.mvvm.databinding.ActivityAddBinding
 import com.test.mvvm.databinding.ActivityMainBinding
 import com.test.mvvm.databinding.RowBinding
 
