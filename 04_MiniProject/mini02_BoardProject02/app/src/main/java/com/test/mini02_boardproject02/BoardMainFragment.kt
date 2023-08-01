@@ -15,8 +15,8 @@ class BoardMainFragment : Fragment() {
     lateinit var fragmentBoardMainBinding: FragmentBoardMainBinding
     lateinit var mainActivity: MainActivity
 
-    var newFragment : Fragment? = null
-    var oldFragment: Fragment? = null
+    var newFragment:Fragment? = null
+    var oldFragment:Fragment? = null
 
     companion object{
         val POST_LIST_FRAGMENT = "PostListFragment"
@@ -30,10 +30,10 @@ class BoardMainFragment : Fragment() {
         fragmentBoardMainBinding = FragmentBoardMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        fragmentBoardMainBinding.run {
+        fragmentBoardMainBinding.run{
             // toolbar
-            toolbarBoardMain.run {
-                title = "게시판 메인"
+            toolbarBoardMain.run{
+                title = "게시판메인"
 
                 setNavigationIcon(R.drawable.menu_24px)
                 setNavigationOnClickListener {
@@ -42,31 +42,32 @@ class BoardMainFragment : Fragment() {
                 }
             }
 
-            // drawerView
-            navigationViewBoardMain.run {
-                // header
+            // DrawerView
+            navigationViewBoardMain.run{
+
+                // 헤더설정
                 val headerBoardMainBinding = HeaderBoardMainBinding.inflate(inflater)
-                headerBoardMainBinding.textViewHeaderBoardMainNickName.text = "홍길동님"
+                headerBoardMainBinding.textViewHeaderBoardMainNickName.text  = "홍길동님"
                 addHeaderView(headerBoardMainBinding.root)
 
-                // 항목 선택 시 동작하는 리스너
+                // 항목 선택시 동작하는 리스너
                 setNavigationItemSelectedListener {
-                    // 누른 메뉴를 체크 상태로 둔다.
+
+                    // 누른 메뉴를 체크상태로 둔다.
                     // it.isChecked = true
 
-                    // 사용자가 누른 메뉴의 id로 분기한다.
+                    // 사용자가 누르 메뉴의 id로 분기한다.
                     when(it.itemId){
+
                         // 전체 게시판
                         R.id.item_board_main_all -> {
                             // 프래그먼트에게 전달할 객체를 가지고 있는 번들
-
-
-                            replaceFragment(POST_LIST_FRAGMENT, false, false,null)
+                            replaceFragment(POST_LIST_FRAGMENT, false, false, null)
                             drawerLayoutBoardMain.close()
                         }
                         // 자유 게시판
                         R.id.item_board_main_free -> {
-                            replaceFragment(POST_LIST_FRAGMENT, false,  false,null)
+                            replaceFragment(POST_LIST_FRAGMENT, false,  false, null)
                             drawerLayoutBoardMain.close()
                         }
                         // 유머 게시판
@@ -87,6 +88,7 @@ class BoardMainFragment : Fragment() {
                         // 사용자 정보 수정
                         R.id.item_board_main_user_info -> {
                             replaceFragment(MODIFY_USER_FRAGMENT, false, false, null)
+                            drawerLayoutBoardMain.close()
                         }
                         // 로그아웃
                         R.id.item_board_main_logout -> {
@@ -177,4 +179,5 @@ class BoardMainFragment : Fragment() {
     fun removeFragment(name:String){
         mainActivity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
+
 }

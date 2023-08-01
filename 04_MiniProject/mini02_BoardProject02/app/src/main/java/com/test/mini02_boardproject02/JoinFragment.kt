@@ -40,8 +40,8 @@ class JoinFragment : Fragment() {
             }
 
             // 비밀번호 확인 입력 요소
-            textInputEditTextJoinUserPw2.run {
-                setOnEditorActionListener { v, actionId, event ->
+            textInputEditTextJoinUserPw2.run{
+                setOnEditorActionListener { textView, i, keyEvent ->
                     next()
                     true
                 }
@@ -51,53 +51,52 @@ class JoinFragment : Fragment() {
         return fragmentJoinBinding.root
     }
 
-    // 다음 버튼을 눌렀거나 비밀번호 확인 입력 요소에서 엔터 키를 눌렀을 경우
+    // 다음 버튼을 눌렀거나 비밀번호 확인 입력 요소에서 엔터키를 눌렀을 경우
     fun next(){
-        fragmentJoinBinding.run {
+
+        fragmentJoinBinding.run{
+
             // 입력한 내용을 가져온다.
             val joinUserId = textInputEditTextJoinUserId.text.toString()
             val joinUserPw = textInputEditTextJoinUserPw.text.toString()
             val joinUserPw2 = textInputEditTextJoinUserPw2.text.toString()
 
-            if (joinUserId.isEmpty()){
+            if(joinUserId.isEmpty()){
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setTitle("로그인 오류")
                 builder.setMessage("아이디를 입력해주세요")
                 builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
-
                     mainActivity.showSoftInput(textInputEditTextJoinUserId)
                 }
                 builder.show()
                 return
             }
 
-            if (joinUserPw.isEmpty()){
+            if(joinUserPw.isEmpty()){
                 val builder = MaterialAlertDialogBuilder(mainActivity)
-                builder.setTitle("비밃번호 오류")
+                builder.setTitle("비빌번호 오류")
                 builder.setMessage("비밀번호를 입력해주세요")
                 builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
-
                     mainActivity.showSoftInput(textInputEditTextJoinUserPw)
                 }
                 builder.show()
                 return
             }
 
-            if (joinUserPw2.isEmpty()){
+            if(joinUserPw2.isEmpty()){
                 val builder = MaterialAlertDialogBuilder(mainActivity)
-                builder.setTitle("비밃번호 오류")
+                builder.setTitle("비빌번호 오류")
                 builder.setMessage("비밀번호를 입력해주세요")
                 builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
-
                     mainActivity.showSoftInput(textInputEditTextJoinUserPw2)
                 }
                 builder.show()
                 return
             }
 
-            if (joinUserPw != joinUserPw2){
+            if(joinUserPw != joinUserPw2){
                 val builder = MaterialAlertDialogBuilder(mainActivity)
-                builder.setTitle("비밃번호 오류")
+                builder.setTitle("비빌번호 오류")
                 builder.setMessage("비밀번호가 일치하지 않습니다.")
                 builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
                     textInputEditTextJoinUserPw.setText("")
@@ -108,7 +107,11 @@ class JoinFragment : Fragment() {
                 return
             }
 
-            mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, null)
+            val newBundle = Bundle()
+            newBundle.putString("joinUserId", joinUserId)
+            newBundle.putString("joinUserPw", joinUserPw)
+
+            mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, newBundle)
         }
     }
 }

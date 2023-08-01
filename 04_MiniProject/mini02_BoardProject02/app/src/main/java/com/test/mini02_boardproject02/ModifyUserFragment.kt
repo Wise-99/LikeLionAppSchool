@@ -18,12 +18,13 @@ class ModifyUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentModifyUserBinding = FragmentModifyUserBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        fragmentModifyUserBinding.run {
+        fragmentModifyUserBinding.run{
             // 수정 완료 버튼
-            buttonModifyUserAccept.run {
+            buttonModifyUserAccept.run{
                 setOnClickListener {
                     // 입력한 내용을 가져온다.
                     val modifyUserPw1 = textInputEditTextModifyUserPw.text.toString()
@@ -31,12 +32,9 @@ class ModifyUserFragment : Fragment() {
                     val modifyUserNickName = textInputEditTextModifyUserNickName.text.toString()
                     val modifyUserAge = textInputEditTextModifyUserAge.text.toString()
 
-                    if (modifyUserPw1.isNotEmpty() || modifyUserPw2.isNotEmpty()){
-
+                    if(modifyUserPw1.isNotEmpty() || modifyUserPw2.isNotEmpty()){
                         if(modifyUserPw1 != modifyUserPw2){
-
                             val builder = MaterialAlertDialogBuilder(mainActivity)
-
                             builder.setTitle("비빌번호 오류")
                             builder.setMessage("비밀번호가 다릅니다.")
                             builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
@@ -44,7 +42,6 @@ class ModifyUserFragment : Fragment() {
                                 textInputEditTextModifyUserPw2.setText("")
                                 mainActivity.showSoftInput(textInputEditTextModifyUserPw)
                             }
-
                             builder.show()
                             return@setOnClickListener
                         }
@@ -52,13 +49,11 @@ class ModifyUserFragment : Fragment() {
 
                     if(modifyUserNickName.isEmpty()){
                         val builder = MaterialAlertDialogBuilder(mainActivity)
-
                         builder.setTitle("닉네임 입력 오류")
-                        builder.setMessage("닉네임을 입력해주세요.")
+                        builder.setMessage("닉네임을 입력해주세요")
                         builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
                             mainActivity.showSoftInput(textInputEditTextModifyUserNickName)
                         }
-
                         builder.show()
                         return@setOnClickListener
                     }
@@ -79,4 +74,5 @@ class ModifyUserFragment : Fragment() {
 
         return fragmentModifyUserBinding.root
     }
+
 }
