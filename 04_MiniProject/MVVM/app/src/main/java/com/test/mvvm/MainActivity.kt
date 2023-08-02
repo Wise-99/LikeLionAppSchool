@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModelTest1: ViewModelTest1
     lateinit var viewModelTest2: ViewModelTest2
 
-    companion object{
+    companion object {
         lateinit var mainActivity: MainActivity
     }
 
@@ -41,40 +41,38 @@ class MainActivity : AppCompatActivity() {
         viewModelTest1 = ViewModelProvider(this)[ViewModelTest1::class.java]
         viewModelTest2 = ViewModelProvider(this)[ViewModelTest2::class.java]
 
-        val testViewModel = ViewModelProvider(this).get<TestViewModel>()
-        testViewModel.number1.observe(this){
-            activityMainBinding.textView3.text = "number : $it"
-        }
-
-        testViewModel.number1.value = 0
-
-        activityMainBinding.run{
+        activityMainBinding.run {
 
             buttonMain.setOnClickListener {
                 val newIntent = Intent(this@MainActivity, AddActivity::class.java)
-
                 startActivity(newIntent)
             }
 
-            recyclerViewMain.run{
+            recyclerViewMain.run {
                 adapter = MainRecyclerAdapter()
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                addItemDecoration(MaterialDividerItemDecoration(this@MainActivity, MaterialDividerItemDecoration.VERTICAL))
+                addItemDecoration(
+                    MaterialDividerItemDecoration(
+                        this@MainActivity,
+                        MaterialDividerItemDecoration.VERTICAL
+                    )
+                )
             }
 
-            viewModelTest2.run{
-                dataList.observe(this@MainActivity){
+            viewModelTest2.run {
+                dataList.observe(this@MainActivity) {
                     recyclerViewMain.adapter?.notifyDataSetChanged()
                 }
             }
         }
     }
 
-    inner class MainRecyclerAdapter : RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder>(){
-        inner class MainViewHolder(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root){
-            var textViewRow:TextView
+    inner class MainRecyclerAdapter : RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder>() {
+        inner class MainViewHolder(rowBinding: RowBinding) :
+            RecyclerView.ViewHolder(rowBinding.root) {
+            var textViewRow: TextView
 
-            init{
+            init {
                 textViewRow = rowBinding.textViewRow
 
                 rowBinding.root.setOnClickListener {
@@ -82,8 +80,6 @@ class MainActivity : AppCompatActivity() {
 
                     // 값을 가지고 있는 객체를 추출한다.
                     val t1 = viewModelTest2.dataList.value?.get(adapterPosition)
-
-                    // 항목 번째의 데이터를 가져온다.
 
                     // ViewModel 객체에 새로운 값을 설정한다.
                     // viewModelTest1.data1.value = t1?.data1!!
@@ -120,8 +116,4 @@ class MainActivity : AppCompatActivity() {
         // ViewModel 에 있는 모든 데이터를 가져오는 메서드를 호출한다.
         viewModelTest2.getAll()
     }
-}
-
-class TestViewModel : ViewModel(){
-    val number1 = MutableLiveData<Int>()
 }
