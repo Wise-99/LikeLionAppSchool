@@ -23,31 +23,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp" >
 
-            <TextView
-                android:id="@+id/textViewPostReadTitle"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPostReadSubject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:layout_height="match_parent"
+                android:transitionGroup="true"
+                app:startIconDrawable="@drawable/edit_24px">
 
-            <TextView
-                android:id="@+id/textViewPostReadContent"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPostReadSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="text|textPersonName"
+                    android:text="제목입니다" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPostReadText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:transitionGroup="true"
                 android:layout_marginTop="10dp"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                app:startIconDrawable="@drawable/edit_24px">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPostReadText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="text|textPersonName"
+                    android:text="내용입니다" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewPostRead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/add_a_photo_24px" />
+                android:src="@mipmap/ic_launcher" />
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

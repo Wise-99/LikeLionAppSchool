@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PostWriteFragment">
+    tools:context=".PostWriteFragment" >
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarPostWrtie"
+        android:id="@+id/toolbarPostWrite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -23,52 +23,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp" >
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutWriteTitle"
+                android:id="@+id/textInputLayoutPostWriteSubject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="제목"
                 android:transitionGroup="true"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/title_24px">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditTextWriteTitle"
+                    android:id="@+id/textInputEditTextPostWriteSubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text|textPersonName"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
+                    android:inputType="text|textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutWriteContent"
+                android:id="@+id/textInputLayoutPostWriteText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:hint="내용"
                 android:transitionGroup="true"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/toc_24px">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditTextWriteContent"
+                    android:id="@+id/textInputEditTextPostWriteText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text|textPersonName|textMultiLine"
-                    android:lines="10"
-                    android:singleLine="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:inputType="text|textPersonName|textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/buttonPostWriteType"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="게시판 타입을 선택해주세요" />
 
             <ImageView
                 android:id="@+id/imageViewPostWrite"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/add_a_photo_24px" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_launcher" />
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>

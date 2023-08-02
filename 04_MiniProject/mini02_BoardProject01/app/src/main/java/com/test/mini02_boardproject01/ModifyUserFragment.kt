@@ -1,10 +1,12 @@
 package com.test.mini02_boardproject01
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.mini02_boardproject01.databinding.FragmentModifyUserBinding
 
 class ModifyUserFragment : Fragment() {
@@ -16,30 +18,61 @@ class ModifyUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentModifyUserBinding = FragmentModifyUserBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        fragmentModifyUserBinding.run {
+        fragmentModifyUserBinding.run{
+            // 수정 완료 버튼
+            buttonModifyUserAccept.run{
+                setOnClickListener {
+                    // 입력한 내용을 가져온다.
+                    val modifyUserPw1 = textInputEditTextModifyUserPw.text.toString()
+                    val modifyUserPw2 = textInputEditTextModifyUserPw2.text.toString()
+                    val modifyUserNickName = textInputEditTextModifyUserNickName.text.toString()
+                    val modifyUserAge = textInputEditTextModifyUserAge.text.toString()
 
-            buttonModifyUserAccept.setOnClickListener {
-                val pw1 = textInputEditTextModifyUserPw.text.toString()
-                val pw2 = textInputEditTextModifyUserPw2.text.toString()
+                    if(modifyUserPw1.isNotEmpty() || modifyUserPw2.isNotEmpty()){
+                        if(modifyUserPw1 != modifyUserPw2){
+                            val builder = MaterialAlertDialogBuilder(mainActivity)
+                            builder.setTitle("비빌번호 오류")
+                            builder.setMessage("비밀번호가 다릅니다.")
+                            builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                                textInputEditTextModifyUserPw.setText("")
+                                textInputEditTextModifyUserPw2.setText("")
+                                mainActivity.showSoftInput(textInputEditTextModifyUserPw)
+                            }
+                            builder.show()
+                            return@setOnClickListener
+                        }
+                    }
 
-                if (pw1 != pw2){
-                    textInputEditTextModifyUserPw.error = "비밀번호 오류"
-                } else if (textInputEditTextModifyUserInfoNickName.text.toString() == ""){
-                    textInputEditTextModifyUserPw.error = ""
-                    textInputLayoutModifyUserInfoNickName.error = "닉네임 입력 오류"
-                } else if (textInputEditTextModifyUserInfoAge.text.toString() == ""){
-                    textInputEditTextModifyUserPw.error = ""
-                    textInputLayoutModifyUserInfoNickName.error = ""
-                    textInputEditTextModifyUserInfoAge.error = "나이 입력 오류"
-                } else {
-                    mainActivity.removeFragment(MainActivity.MODIFY_USER_FRAGMENT)
+                    if(modifyUserNickName.isEmpty()){
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setTitle("닉네임 입력 오류")
+                        builder.setMessage("닉네임을 입력해주세요")
+                        builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                            mainActivity.showSoftInput(textInputEditTextModifyUserNickName)
+                        }
+                        builder.show()
+                        return@setOnClickListener
+                    }
+
+                    if(modifyUserAge.isEmpty()){
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setTitle("나이 입력 오류")
+                        builder.setMessage("나이를 입력해주세요")
+                        builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                            mainActivity.showSoftInput(textInputEditTextModifyUserAge)
+                        }
+                        builder.show()
+                        return@setOnClickListener
+                    }
                 }
             }
         }
 
         return fragmentModifyUserBinding.root
     }
+
 }

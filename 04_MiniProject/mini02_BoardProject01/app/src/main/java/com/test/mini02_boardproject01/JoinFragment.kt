@@ -1,15 +1,13 @@
 package com.test.mini02_boardproject01
 
-import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
-import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.mini02_boardproject01.databinding.FragmentJoinBinding
-import kotlin.concurrent.thread
 
 class JoinFragment : Fragment() {
 
@@ -26,16 +24,6 @@ class JoinFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentJoinBinding.run{
-
-            textInputEditTextJoinUserId.requestFocus()
-
-            thread {
-                SystemClock.sleep(500)
-
-                val imm = mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.showSoftInput(mainActivity.currentFocus, 0)
-            }
-
             // toolbar
             toolbarJoin.run{
                 title = "회원가입"
@@ -47,15 +35,15 @@ class JoinFragment : Fragment() {
             // 다음 버튼
             buttonJoinNext.run{
                 setOnClickListener {
-                    val id = textInputEditTextJoinUserId.text.toString()
-                    val pw1 = textInputEditTextJoinUserPw.text.toString()
-                    val pw2 = textInputEditTextJoinUserPw2.text.toString()
+                    next()
+                }
+            }
 
-                    if (id != "" && pw1 != "" && pw2 != ""){
-                        if(pw1 == pw2){
-                            mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, null)
-                        }
-                    }
+            // 비밀번호 확인 입력 요소
+            textInputEditTextJoinUserPw2.run{
+                setOnEditorActionListener { textView, i, keyEvent ->
+                    next()
+                    true
                 }
             }
         }
@@ -63,4 +51,67 @@ class JoinFragment : Fragment() {
         return fragmentJoinBinding.root
     }
 
+    // 다음 버튼을 눌렀거나 비밀번호 확인 입력 요소에서 엔터키를 눌렀을 경우
+    fun next(){
+
+        fragmentJoinBinding.run{
+
+            // 입력한 내용을 가져온다.
+            val joinUserId = textInputEditTextJoinUserId.text.toString()
+            val joinUserPw = textInputEditTextJoinUserPw.text.toString()
+            val joinUserPw2 = textInputEditTextJoinUserPw2.text.toString()
+
+            if(joinUserId.isEmpty()){
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setTitle("로그인 오류")
+                builder.setMessage("아이디를 입력해주세요")
+                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                    mainActivity.showSoftInput(textInputEditTextJoinUserId)
+                }
+                builder.show()
+                return
+            }
+
+            if(joinUserPw.isEmpty()){
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setTitle("비빌번호 오류")
+                builder.setMessage("비밀번호를 입력해주세요")
+                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                    mainActivity.showSoftInput(textInputEditTextJoinUserPw)
+                }
+                builder.show()
+                return
+            }
+
+            if(joinUserPw2.isEmpty()){
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setTitle("비빌번호 오류")
+                builder.setMessage("비밀번호를 입력해주세요")
+                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                    mainActivity.showSoftInput(textInputEditTextJoinUserPw2)
+                }
+                builder.show()
+                return
+            }
+
+            if(joinUserPw != joinUserPw2){
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setTitle("비빌번호 오류")
+                builder.setMessage("비밀번호가 일치하지 않습니다.")
+                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                    textInputEditTextJoinUserPw.setText("")
+                    textInputEditTextJoinUserPw2.setText("")
+                    mainActivity.showSoftInput(textInputEditTextJoinUserPw)
+                }
+                builder.show()
+                return
+            }
+
+            val newBundle = Bundle()
+            newBundle.putString("joinUserId", joinUserId)
+            newBundle.putString("joinUserPw", joinUserPw)
+
+            mainActivity.replaceFragment(MainActivity.ADD_USER_INFO_FRAGMENT, true, newBundle)
+        }
+    }
 }

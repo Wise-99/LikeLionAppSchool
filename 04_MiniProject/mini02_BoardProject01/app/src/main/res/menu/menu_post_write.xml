@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item_post_write_photo"
+        android:id="@+id/item_post_write_camera"
         android:icon="@drawable/add_a_photo_24px"
-        android:title="사진 촬영"
-        app:showAsAction="ifRoom" />
+        android:title="카메라"
+        app:showAsAction="always" />
     <item
         android:id="@+id/item_post_write_album"
         android:icon="@drawable/photo_album_24px"
-        android:title="앨범에서 가져오기"
-        app:showAsAction="ifRoom" />
+        android:title="앨범"
+        app:showAsAction="always" />
     <item
-        android:id="@+id/item_post_write_save"
+        android:id="@+id/item_post_write_done"
         android:icon="@drawable/save_as_24px"
-        android:title="작성 완료"
-        app:showAsAction="ifRoom" />
+        android:title="완료"
+        app:showAsAction="always" />
 </menu>

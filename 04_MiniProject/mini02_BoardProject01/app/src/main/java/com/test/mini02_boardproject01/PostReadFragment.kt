@@ -1,5 +1,6 @@
 package com.test.mini02_boardproject01
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,19 +22,43 @@ class PostReadFragment : Fragment() {
 
         fragmentPostReadBinding.run {
             toolbarPostRead.run {
+                title = "글읽기"
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.POST_WRITE_FRAGMENT)
+                    mainActivity.removeFragment(MainActivity.POST_READ_FRAGMENT)
+                }
                 inflateMenu(R.menu.menu_post_read)
+
                 setOnMenuItemClickListener {
+
                     when(it.itemId){
-                        R.id.item_post_read_update -> {
+                        R.id.item_post_read_modify -> {
+//                            if(textInputEditTextPostReadSubject.isEnabled == false) {
+//                                textInputEditTextPostReadSubject.isEnabled = true
+//                                textInputEditTextPostReadText.isEnabled = true
+//                            } else {
+//                                textInputEditTextPostReadSubject.isEnabled = false
+//                                textInputEditTextPostReadText.isEnabled = false
+//                            }
                             mainActivity.replaceFragment(MainActivity.POST_MODIFY_FRAGMENT, true, null)
                         }
                         R.id.item_post_read_delete -> {
+                            mainActivity.removeFragment(MainActivity.POST_WRITE_FRAGMENT)
                             mainActivity.removeFragment(MainActivity.POST_READ_FRAGMENT)
                         }
                     }
 
-                    false
+                    true
                 }
+            }
+
+            textInputEditTextPostReadSubject.run{
+                setTextColor(Color.BLACK)
+            }
+
+            textInputEditTextPostReadText.run{
+                setTextColor(Color.BLACK)
             }
         }
 

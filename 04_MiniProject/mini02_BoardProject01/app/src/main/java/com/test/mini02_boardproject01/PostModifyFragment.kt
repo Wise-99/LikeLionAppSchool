@@ -1,10 +1,12 @@
 package com.test.mini02_boardproject01
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.mini02_boardproject01.databinding.FragmentPostModifyBinding
 
 class PostModifyFragment : Fragment() {
@@ -19,9 +21,14 @@ class PostModifyFragment : Fragment() {
         fragmentPostModifyBinding = FragmentPostModifyBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        fragmentPostModifyBinding.run {
-            toolbarPostModify.run {
-                title = "게시글 수정"
+        fragmentPostModifyBinding.run{
+            toolbarPostModify.run{
+                title = "글수정"
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
+                }
+
                 inflateMenu(R.menu.menu_post_modify)
                 setOnMenuItemClickListener {
                     when(it.itemId){
@@ -32,25 +39,38 @@ class PostModifyFragment : Fragment() {
 
                         }
                         R.id.item_post_modify_done -> {
-                            val title = textInputEditTextModifyTitle.text.toString()
-                            val content =textInputEditTextModifyContent.text.toString()
-                            if(title != "" && content != ""){
-                                mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
-                            } else {
-                                textInputLayoutModifyTitle.error = "입력 확인해주세요!"
+                            // 입력한 내용을 가져온다.
+                            val subject = textInputEditTextPostModifySubject.text.toString()
+                            val text = textInputEditTextPostModifyText.text.toString()
+
+                            if(subject.isEmpty()){
+                                val builder = MaterialAlertDialogBuilder(mainActivity)
+                                builder.setTitle("제목 입력 오류")
+                                builder.setMessage("제목을 입력해주세요")
+                                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                                    mainActivity.showSoftInput(textInputEditTextPostModifySubject)
+                                }
+                                builder.show()
+                                return@setOnMenuItemClickListener true
                             }
+
+                            if(text.isEmpty()){
+                                val builder = MaterialAlertDialogBuilder(mainActivity)
+                                builder.setTitle("내용 입력 오류")
+                                builder.setMessage("내용을 입력해주세요")
+                                builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                                    mainActivity.showSoftInput(textInputEditTextPostModifyText)
+                                }
+                                builder.show()
+                                return@setOnMenuItemClickListener true
+                            }
+
+                            mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
                         }
                     }
                     true
                 }
-
-                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
-                setNavigationOnClickListener {
-                    mainActivity.removeFragment(MainActivity.POST_MODIFY_FRAGMENT)
-                }
             }
-
-
         }
 
         return fragmentPostModifyBinding.root
