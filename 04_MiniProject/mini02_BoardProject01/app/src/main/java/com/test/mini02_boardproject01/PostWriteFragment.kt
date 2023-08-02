@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.test.mini02_boardproject01.databinding.FragmentPostWriteBinding
+import com.test.mini02_boardproject01.repository.BoardRepository
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -133,48 +134,7 @@ class PostWriteFragment : Fragment() {
                                 return@setOnMenuItemClickListener true
                             }
 
-                            val database = FirebaseDatabase.getInstance()
-                            // 게시글 인덱스 번호
-                            val postIdxRef = database.getReference("PostIdx")
-                            postIdxRef.get().addOnCompleteListener {
-                                var postIdx = it.result.value as Long
-                                // 게시글 인덱스를 증가한다.
-                                postIdx++
-
-                                // 게시글을 저장한다.
-                                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                                val writeDate = sdf.format(Date(System.currentTimeMillis()))
-
-                                val fileName = if(uploadUri == null){
-                                    "None"
-                                } else {
-                                    "image/img_${System.currentTimeMillis()}.jpg"
-                                }
-
-                                val postDataClass = PostDataClass(postIdx, boardType.toLong(), subject,
-                                    text, writeDate, fileName, mainActivity.loginUserClass.userIdx)
-
-                                val postDataRef = database.getReference("PostData")
-                                postDataRef.push().setValue(postDataClass).addOnCompleteListener {
-                                    // 게시글 인덱스번호 저장
-                                    postIdxRef.get().addOnCompleteListener {
-                                        it.result.ref.setValue(postIdx).addOnCompleteListener {
-                                            // 이미지 업로드
-                                            if(uploadUri != null){
-                                                val storage = FirebaseStorage.getInstance()
-                                                val imageRef = storage.reference.child(fileName)
-                                                imageRef.putFile(uploadUri!!).addOnCompleteListener{
-                                                    Snackbar.make(fragmentPostWriteBinding.root, "저장되었습니다!", Snackbar.LENGTH_SHORT).show()
-                                                    mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
-                                                }
-                                            } else {
-                                                Snackbar.make(fragmentPostWriteBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                                                mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            BoardRepository.addPost(mainActivity, uploadUri!!, boardType, subject, text, fragmentPostWriteBinding)
                         }
                     }
                     true
