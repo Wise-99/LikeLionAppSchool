@@ -83,9 +83,11 @@ class MainActivity : AppCompatActivity() {
                     // 값을 가지고 있는 객체를 추출한다.
                     val t1 = viewModelTest2.dataList.value?.get(adapterPosition)
 
+                    // 항목 번째의 데이터를 가져온다.
+
                     // ViewModel 객체에 새로운 값을 설정한다.
-                    viewModelTest1.data1.value = t1?.data1!!
-                    viewModelTest1.data2.value = t1?.data2!!
+                    // viewModelTest1.data1.value = t1?.data1!!
+                    // viewModelTest1.data2.value = t1?.data2!!
 
                     startActivity(newIntent)
                 }
@@ -111,6 +113,12 @@ class MainActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
             holder.textViewRow.text = viewModelTest2.dataList.value?.get(position)?.data1
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // ViewModel 에 있는 모든 데이터를 가져오는 메서드를 호출한다.
+        viewModelTest2.getAll()
     }
 }
 

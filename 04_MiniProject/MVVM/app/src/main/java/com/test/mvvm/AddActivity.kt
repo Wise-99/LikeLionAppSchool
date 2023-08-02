@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.test.mvvm.databinding.ActivityAddBinding
+import com.test.mvvm.repository.Test1Repository
 import com.test.mvvm.vm.TestData
 import com.test.mvvm.vm.ViewModelTest2
 
@@ -29,14 +30,15 @@ class AddActivity : AppCompatActivity() {
                     val data1 = editTextAddData1.text.toString()
                     val data2 = editTextAddData2.text.toString()
 
-                    val t1 = TestData(data1, data2)
+                    val t1 = TestData(0, data1, data2)
 
                     // ViewModel 객체의 리스트에 담아준다.
                     // 리사이클러뷰 갱신 안됨
                     // value에 값이 추가되는 게 아닌 value(MutableLiveData)에 담긴 리스트에 값을 추가하는 것이라서
                     // viewModelTest2.dataList.value?.add(t1)
 
-                    viewModelTest2.addItem(t1)
+                    // 데이터베이스에 저장한다.
+                    Test1Repository.addData(this@AddActivity, t1)
 
                     finish()
                 }
