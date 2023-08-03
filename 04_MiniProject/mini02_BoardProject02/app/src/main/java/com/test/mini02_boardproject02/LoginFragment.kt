@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.FirebaseDatabase
 import com.test.mini02_boardproject02.databinding.FragmentLoginBinding
+import com.test.mini02_boardproject02.repository.UserRepository
+import com.test.mini02_boardproject02.vm.UserViewModel
 import kotlin.concurrent.thread
 
 class LoginFragment : Fragment() {
@@ -21,13 +24,26 @@ class LoginFragment : Fragment() {
     lateinit var fragmentLoginBinding: FragmentLoginBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var userViewModel: UserViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
 
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        userViewModel = ViewModelProvider(mainActivity)[UserViewModel::class.java]
+        userViewModel.run{
+            userId.observe(mainActivity){
+                fragmentLoginBinding.textInputEditTextLoginUserId.setText(it)
+            }
+            userPw.observe(mainActivity){
+                fragmentLoginBinding.textInputEditTextLoginUserPw.setText(it)
+            }
+        }
 
         fragmentLoginBinding.run{
             // toolbar
@@ -92,11 +108,7 @@ class LoginFragment : Fragment() {
                 return
             }
 
-            val database = FirebaseDatabase.getInstance()
-            val userDataRef = database.getReference("UserData")
-
-            // userId가 사용자가 입력한 아이디와 같은 데이터를 가져온다.
-            userDataRef.orderByChild("userId").equalTo(loginUserId).get().addOnCompleteListener {
+            UserRepository.getUserInfoByUserId(loginUserId){
                 // 가져온 데이터가 없다면
                 if(it.result.exists() == false){
                     val builder = MaterialAlertDialogBuilder(mainActivity)
@@ -152,5 +164,11 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        userViewModel.reset()
     }
 }

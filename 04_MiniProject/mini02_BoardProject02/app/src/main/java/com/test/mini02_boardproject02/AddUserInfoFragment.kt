@@ -2,7 +2,6 @@ package com.test.mini02_boardproject02
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,8 @@ import androidx.core.view.children
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.FirebaseDatabase
 import com.test.mini02_boardproject02.databinding.FragmentAddUserInfoBinding
+import com.test.mini02_boardproject02.repository.UserRepository
 
 class AddUserInfoFragment : Fragment() {
 
@@ -66,11 +65,8 @@ class AddUserInfoFragment : Fragment() {
                     }
 
                     // 사용자 인덱스 값을 가져온다.
-                    val database = FirebaseDatabase.getInstance()
-                    val userIdxRef = database.getReference("UserIdx")
-
-                    userIdxRef.get().addOnCompleteListener {
-                        // 현재의 사용자 순서 값을 가져온다.
+                    UserRepository.getUserIdx {
+                        // 현재의 사용자 순서값을 가져온다.
                         var userIdx = it.result.value as Long
 
                         // 저장할 데이터들을 담는다.
@@ -91,16 +87,8 @@ class AddUserInfoFragment : Fragment() {
                         )
 
                         // 저장한다.
-                        val userDataRef = database.getReference("UserData")
-
-                        userDataRef.push().setValue(userClass).addOnCompleteListener {
-
-                            userIdxRef.get().addOnCompleteListener {
-
-                                // Log.d("abc", userIdx.toString())
-
-                                it.result.ref.setValue(userIdx)
-
+                        UserRepository.addUserInfo(userClass){
+                            UserRepository.setUserIdx(userIdx) {
                                 Snackbar.make(fragmentAddUserInfoBinding.root, "가입이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
 
                                 mainActivity.removeFragment(MainActivity.ADD_USER_INFO_FRAGMENT)
@@ -153,6 +141,9 @@ class AddUserInfoFragment : Fragment() {
                     setParentCheckBoxState()
                 }
             }
+
+            // 닉네임에 포커스를 주고 키보드를 올려준다.
+            mainActivity.showSoftInput(textInputEditTextAddUserInfoNickName)
         }
 
         return fragmentAddUserInfoBinding.root
