@@ -42,5 +42,13 @@ class UserRepository {
             // userId가 사용자가 입력한 아이디와 같은 데이터를 가져온다.
             userDataRef.orderByChild("userId").equalTo(loginUserId).get().addOnCompleteListener(callback1)
         }
+
+        // 사용자 인덱스를 통해 사용자 정보를 가져온다.
+        fun getUserInfoByUserIdx(userIdx:Long, callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val userDataRef = database.getReference("UserData")
+
+            userDataRef.orderByChild("userIdx").equalTo(userIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
     }
 }

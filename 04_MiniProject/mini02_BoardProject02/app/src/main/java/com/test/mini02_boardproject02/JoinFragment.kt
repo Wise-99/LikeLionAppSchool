@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.mini02_boardproject02.databinding.FragmentJoinBinding
 import com.test.mini02_boardproject02.vm.UserViewModel
 
+
 class JoinFragment : Fragment() {
 
     lateinit var fragmentJoinBinding: FragmentJoinBinding
@@ -140,3 +141,11 @@ class JoinFragment : Fragment() {
         userViewModel.reset()
     }
 }
+
+
+
+
+
+
+
+

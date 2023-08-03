@@ -33,6 +33,7 @@ import java.util.Date
 import java.util.Locale
 import kotlin.math.max
 
+
 class PostWriteFragment : Fragment() {
 
     lateinit var fragmentPostWriteBinding: FragmentPostWriteBinding
@@ -156,15 +157,20 @@ class PostWriteFragment : Fragment() {
                                 PostRepository.addPostInfo(postDataClass) {
                                     // 게시글 인덱스번호 저장
                                     PostRepository.setPostIdx(postIdx) {
+
+                                        // 글 번호를 번들에 담아준다.
+                                        val newBundle = Bundle()
+                                        newBundle.putLong("readPostIdx", postIdx)
+
                                         // 이미지 업로드
                                         if(uploadUri != null){
                                             PostRepository.uploadImage(uploadUri!!, fileName){
                                                 Snackbar.make(fragmentPostWriteBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                                                mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
+                                                mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, newBundle)
                                             }
                                         } else {
                                             Snackbar.make(fragmentPostWriteBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                                            mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
+                                            mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, newBundle)
                                         }
                                     }
                                 }
@@ -291,3 +297,12 @@ class PostWriteFragment : Fragment() {
         return albumLauncher
     }
 }
+
+
+
+
+
+
+
+
+
