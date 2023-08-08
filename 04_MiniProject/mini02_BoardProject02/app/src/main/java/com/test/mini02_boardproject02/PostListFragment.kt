@@ -39,18 +39,6 @@ class PostListFragment : Fragment() {
 
         fragmentPostListBinding.run {
 
-            recyclerViewPostAll.run {
-                adapter = AllRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
-            }
-
-            recyclerViewPostListResult.run {
-                adapter = ResultRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
-            }
-
             searchBarPostList.run{
                 hint = "검색어를 입력해주세요"
                 inflateMenu(R.menu.menu_post_list)
@@ -79,6 +67,23 @@ class PostListFragment : Fragment() {
                         postViewModel.getPostAll(arguments?.getLong("postType")!!)
                     }
                 }
+
+                editText.setOnEditorActionListener { v, actionId, event ->
+                    Snackbar.make(fragmentPostListBinding.root, text!!, Snackbar.LENGTH_SHORT).show()
+                    true
+                }
+            }
+
+            recyclerViewPostAll.run {
+                adapter = AllRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
+            }
+
+            recyclerViewPostListResult.run {
+                adapter = ResultRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
             // 게시판 타입 번호를 전달하여 게시글 정보를 가져온다.
@@ -158,12 +163,12 @@ class PostListFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 100
+            return postViewModel.postDataList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-            holder.rowPostListSubject.text = "제목입니다 : $position"
-            holder.rowPostListNickName.text = "작성자 : $position"
+            holder.rowPostListSubject.text = postViewModel.postDataList.value?.get(position)?.postSubject
+            holder.rowPostListNickName.text = postViewModel.postWriterNicknameList.value?.get(position)
         }
     }
 }
