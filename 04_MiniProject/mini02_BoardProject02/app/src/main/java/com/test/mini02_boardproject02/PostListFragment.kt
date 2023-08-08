@@ -34,6 +34,7 @@ class PostListFragment : Fragment() {
         postViewModel.run {
             postDataList.observe(mainActivity){
                 fragmentPostListBinding.recyclerViewPostAll.adapter?.notifyDataSetChanged()
+                fragmentPostListBinding.recyclerViewPostListResult.adapter?.notifyDataSetChanged()
             }
         }
 
@@ -69,7 +70,8 @@ class PostListFragment : Fragment() {
                 }
 
                 editText.setOnEditorActionListener { v, actionId, event ->
-                    Snackbar.make(fragmentPostListBinding.root, text!!, Snackbar.LENGTH_SHORT).show()
+                    // Snackbar.make(fragmentPostListBinding.root, text!!, Snackbar.LENGTH_SHORT).show()
+                    postViewModel.getSearchPostList(arguments?.getLong("postType")!!, text.toString())
                     true
                 }
             }
@@ -81,7 +83,7 @@ class PostListFragment : Fragment() {
             }
 
             recyclerViewPostListResult.run {
-                adapter = ResultRecyclerViewAdapter()
+                adapter = AllRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
@@ -132,43 +134,6 @@ class PostListFragment : Fragment() {
         override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
             holder.rowPostListSubject.text = postViewModel.postDataList.value?.get(position)?.postSubject
             // holder.rowPostListNickName.text = postViewModel.postWriterNicknameList.value?.get(position)
-        }
-    }
-
-    inner class ResultRecyclerViewAdapter : RecyclerView.Adapter<ResultRecyclerViewAdapter.ResultViewHolder>(){
-        inner class ResultViewHolder(rowPostListBinding: RowPostListBinding) : RecyclerView.ViewHolder(rowPostListBinding.root){
-            val rowPostListSubject : TextView
-            val rowPostListNickName:TextView
-
-            init {
-                rowPostListSubject = rowPostListBinding.rowPostListSubject
-                rowPostListNickName = rowPostListBinding.rowPostListNickName
-            }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
-            val rowPostListBinding = RowPostListBinding.inflate(layoutInflater)
-            val allViewHolder = ResultViewHolder(rowPostListBinding)
-
-            rowPostListBinding.root.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            rowPostListBinding.root.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.POST_READ_FRAGMENT, true, null)
-            }
-
-            return allViewHolder
-        }
-
-        override fun getItemCount(): Int {
-            return postViewModel.postDataList.value?.size!!
-        }
-
-        override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-            holder.rowPostListSubject.text = postViewModel.postDataList.value?.get(position)?.postSubject
-            holder.rowPostListNickName.text = postViewModel.postWriterNicknameList.value?.get(position)
         }
     }
 }
