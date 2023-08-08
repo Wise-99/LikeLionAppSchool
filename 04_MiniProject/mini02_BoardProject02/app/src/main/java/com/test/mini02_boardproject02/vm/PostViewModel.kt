@@ -108,4 +108,10 @@ class PostViewModel() : ViewModel() {
             postDataList.value = tempList
         }
     }
+
+    // postDataList 초기화
+    fun resetPostList(){
+        postDataList.value = mutableListOf<PostDataClass>()
+        postWriterNicknameList.value = mutableListOf<String>()
+    }
 }

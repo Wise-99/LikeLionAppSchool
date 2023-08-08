@@ -1,7 +1,6 @@
 package com.test.mini02_boardproject02
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.search.SearchView
+import com.google.android.material.snackbar.Snackbar
 import com.test.mini02_boardproject02.databinding.FragmentPostListBinding
 import com.test.mini02_boardproject02.databinding.RowPostListBinding
 import com.test.mini02_boardproject02.vm.PostViewModel
@@ -65,8 +66,22 @@ class PostListFragment : Fragment() {
 
             searchViewPostList.run{
                 hint = "검색어를 입력해주세요"
+
+                addTransitionListener { searchView, previousState, newState ->
+                    // searchBar를 눌러 searchView가 보일 때
+                    if(newState == SearchView.TransitionState.SHOWING){
+                        // Snackbar.make(fragmentPostListBinding.root, "Showing", Snackbar.LENGTH_SHORT).show()
+                        postViewModel.resetPostList()
+                    }
+                    // searchView의 back 버튼을 눌러 searchView가 사라지고 searchBar가 보일 때
+                    else if(newState == SearchView.TransitionState.HIDING){
+                        // Snackbar.make(fragmentPostListBinding.root, "Hiding", Snackbar.LENGTH_SHORT).show()
+                        postViewModel.getPostAll(arguments?.getLong("postType")!!)
+                    }
+                }
             }
 
+            // 게시판 타입 번호를 전달하여 게시글 정보를 가져온다.
             postViewModel.getPostAll(arguments?.getLong("postType")!!)
         }
 
