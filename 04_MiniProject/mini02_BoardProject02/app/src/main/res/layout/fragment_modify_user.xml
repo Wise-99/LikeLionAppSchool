@@ -67,24 +67,24 @@
                 android:layout_marginStart="50dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:id="@+id/materialCheckBoxGroupModifyUserInfo1">
+                android:id="@+id/materialCheckBoxGroupUserModify1">
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby1"
+                    android:id="@+id/materialCheckBoxModifyUserHobby1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="게임" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby2"
+                    android:id="@+id/materialCheckBoxModifyUserHobby2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="독서" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby3"
+                    android:id="@+id/materialCheckBoxModifyUserHobby3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -97,24 +97,24 @@
                 android:layout_marginStart="50dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:id="@+id/materialCheckBoxGroupModifyUserInfo2">
+                android:id="@+id/materialCheckBoxGroupUserModify2">
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby4"
+                    android:id="@+id/materialCheckBoxModifyUserHobby4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="낚시" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby5"
+                    android:id="@+id/materialCheckBoxModifyUserHobby5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="영화감상" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/materialCheckBoxModifyUserInfoHobby6"
+                    android:id="@+id/materialCheckBoxModifyUserHobby6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
