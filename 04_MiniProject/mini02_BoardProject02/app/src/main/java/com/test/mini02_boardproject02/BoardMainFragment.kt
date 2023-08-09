@@ -53,7 +53,7 @@ class BoardMainFragment : Fragment() {
 
                 // 헤더 설정
                 val headerBoardMainBinding = HeaderBoardMainBinding.inflate(inflater)
-                headerBoardMainBinding.textViewHeaderBoardMainNickName.text  = "홍길동님"
+                headerBoardMainBinding.textViewHeaderBoardMainNickName.text  = "${mainActivity.loginUserClass.userNickname}님"
                 addHeaderView(headerBoardMainBinding.root)
 
                 // 항목 선택시 동작하는 리스너
